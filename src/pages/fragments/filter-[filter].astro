@@ -1,0 +1,96 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { filter: '1' } },
+    { params: { filter: '2' } },
+    { params: { filter: '3' } },
+  ];
+}
+
+import Layout from '../../layouts/Layout.astro';
+
+const names = [
+	'John Doe',
+	'Jane Smith',
+	'Michael Johnson',
+	'Emily Brown',
+	'William Lee',
+	'Olivia Williams',
+	'James Jones',
+	'Sophia Davis',
+	'Benjamin Miller',
+	'Isabella Wilson',
+	'Alexander Taylor',
+	'Madison Anderson',
+	'Ethan Thomas',
+	'Abigail Martinez',
+	'Daniel Robinson',
+	'Charlotte Hernandez',
+	'Matthew Gonzalez',
+	'Grace Perez',
+	'David Ramirez',
+	'Chloe Cooper',
+	'Joseph Peterson',
+	'Avery Morgan',
+	'Noah Turner',
+	'Lily Flores',
+	'Samuel Gray',
+	'Ella Price',
+	'Christopher Brooks',
+	'Aubrey Washington',
+	'Andrew Bell',
+	'Sofia Diaz',
+	'Logan Reed',
+	'Scarlett Stewart',
+	'Ryan Morris',
+	'Zoe Watson',
+	'Joshua Ross',
+	'Lillian Murphy',
+	'Nathan Powell',
+	'Hannah Cox',
+	'Aiden Perry',
+	'Victoria Long',
+	'Carter Jenkins',
+	'Brooklyn Foster',
+	'Elijah Hayes',
+	'Peyton Rivera',
+	'Isaac Coleman',
+	'Leah Howard',
+	'Henry Ward',
+	'Grace Richardson',
+	'Jonathan Griffin',
+	'Willow Brooks',
+	'Julian Reed',
+	'Harper Alexander',
+];
+
+const { filter } = Astro.params;
+
+const filteredNames = names.filter((name, index) => {
+	return index % (Number(filter) + 2) === 0;
+});
+
+---
+
+<Layout title="Fragments" classes="fragments">
+	<article>
+		<h1>Fragments: subpage</h1>
+		<p class="instructions">
+			Update dynamic fragments.
+		</p>
+
+		<div class="instructions">
+			<a href="/fragments/filter-1">Filter 1</a>  
+			<a href="/fragments/filter-2">Filter 2</a>  
+			<a href="/fragments/filter-3">Filter 3</a>  
+			<a href="/fragments">Reset</a>  
+			({Math.random()})
+		</div>
+
+		<div id="names" class="instructions transition-filter">
+				{filteredNames.map((name) => (<div>{name}</div>))}
+		</div>
+
+	</article>
+
+</Layout>

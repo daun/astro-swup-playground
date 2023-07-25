@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Scripts" classes="scripts">
+	<article>
+		<h1>Scripts</h1>
+		<p class="instructions">
+			Expecting two checkmarks in the box below.
+		</p>
+		<p class="instructions" id="test"></p>
+	</article>
+
+	<script>
+		console.log('Script: hoisted');
+		const container = document.querySelector('#test')
+		container.innerHTML += '✓ script ';
+	</script>
+
+	<script is:inline>
+		{
+			console.log('Script: inline');
+			const container = document.querySelector('#test')
+			container.innerHTML += '✓ inline ';
+		}
+	</script>
+
+	<script src="/src/modules/script.js"></script>
+
+</Layout>

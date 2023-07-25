@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Forms" classes="forms">
+	<article>
+		<h1>Forms</h1>
+		<p class="instructions">
+			Testing form submissions.
+		</p>
+		<form action="/forms" data-swup-form>
+			GET form
+			<input type="text" name="first" placeholder="First name">
+			<input type="text" name="last" placeholder="Last name">
+			<select name="age">
+				<option value="20">20-25</option>
+				<option value="25">25-35</option>
+				<option value="35">35-60</option>
+			</select>
+			<textarea name="message"></textarea>
+			<button type="submit">Submit</button>
+		</form>
+		<form action="/forms" method="post" data-swup-form>
+			POST form
+			<input type="text" name="first" placeholder="First name">
+			<input type="text" name="last" placeholder="Last name">
+			<select name="age">
+				<option value="20">20-25</option>
+				<option value="25">25-35</option>
+				<option value="35">35-60</option>
+			</select>
+			<textarea name="message"></textarea>
+			<button type="submit">Submit</button>
+		</form>
+	</article>
+</Layout>
+
+<style>
+form {
+	display: block;
+}
+input {
+	width: 100%;
+}
+textarea {
+	width: 100%;
+}
+select {
+	width: 100%;
+}
+</style>

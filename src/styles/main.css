@@ -1,0 +1,146 @@
+/**
+  * Layout
+  */
+
+html {
+  font-family: system-ui, sans-serif;
+  background-color: #F6F6F6;
+}
+
+.layout {
+  display: grid;
+  grid-template-areas: "header"
+                       "main"
+                       "footer";
+  margin: auto;
+  max-width: 60ch;
+  width: 100%;
+  overflow: hidden;
+}
+
+.layout > * {
+  min-width: 0;
+}
+
+.layout > header {
+  grid-area: header;
+}
+
+.layout > main {
+  grid-area: main;
+}
+
+.layout > footer {
+  grid-area: footer;
+}
+
+main,
+header,
+footer {
+  padding: 1.5rem;
+  background-color: #F6F6F6;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.text-gradient {
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  background-position: 0%;
+}
+
+.instructions {
+  line-height: 1.6;
+  margin: 1rem 0;
+  border: 1px solid rgba(var(--accent), 25%);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+
+.instructions code {
+  font-size: 0.875em;
+  font-weight: bold;
+  background: rgba(var(--accent), 12%);
+  color: rgb(var(--accent));
+  border-radius: 4px;
+  padding: 0.3em 0.45em;
+}
+
+.instructions strong {
+  color: rgb(var(--accent));
+}
+
+.link-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+  gap: 1rem;
+  padding: 0;
+}
+
+
+/**
+  * Slide
+  */
+
+.is-changing .transition-slide {
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.transition-slide.is-next-container {
+  transform: translateX(100%);
+  /* opacity: 0; */
+}
+
+.transition-slide.is-previous-container {
+  transform: translateX(-100%);
+  /* opacity: 0; */
+}
+
+
+/**
+  * Fade
+  */
+
+.is-changing .transition-fade {
+  transition: opacity .5s ease-in-out, transform .5s ease-in-out;
+}
+
+.is-animating .transition-fade {
+  opacity: 0;
+}
+
+/**
+  * Fade: prev/next
+  */
+
+.transition-fade.is-next-container {
+  transform: translateX(100%);
+}
+
+.transition-fade.is-previous-container {
+  transform: translateX(-100%);
+}
+
+/**
+  * Filter
+  */
+
+.transition-filter.is-changing {
+  transition: opacity 3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.transition-filter.is-animating {
+  opacity: 0;
+}
+
+.transition-filter.is-next-container,
+.transition-filter.is-previous-container {
+  opacity: 0;
+}

@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TestComponent from '../components/Test.svelte';
+---
+
+<Layout title="Client" classes="client">
+	<article>
+		<h1>Client</h1>
+		<p class="instructions">
+			Expecting an interactive clock and a clickable counter button.
+		</p>
+	</article>
+
+	<TestComponent client:visible />
+
+	<astro-heart>
+		<button aria-label="Heart">💜</button> × <span>0</span>
+	</astro-heart>
+
+	<script>
+		customElements.define('astro-heart', class extends HTMLElement {
+			constructor() {
+				super();
+				let count = 0;
+
+				const heartButton = this.querySelector('button');
+				const countSpan = this.querySelector('span');
+
+				// Each time the button is clicked, update the count.
+				heartButton.addEventListener('click', () => {
+					count++;
+					countSpan.textContent = count;
+				});
+			}
+		});
+	</script>
+
+</Layout>

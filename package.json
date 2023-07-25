@@ -10,6 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.7.2"
+    "@astrojs/svelte": "^3.1.0",
+    "@swup/plugin": "^3.0.0-rc.27",
+    "astro": "^2.7.2",
+    "focus-options-polyfill": "^1.6.0",
+    "morphdom": "^2.7.0",
+    "on-demand-live-region": "^0.1.3",
+    "scrl": "^2.0.0",
+    "svelte": "^4.1.1",
+    "swup": "4.0.0-rc.31"
   }
 }

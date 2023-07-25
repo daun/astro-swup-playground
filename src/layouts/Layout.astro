@@ -4,6 +4,9 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+const { classes = '' } = Astro.props;
+
+import '../styles/main.css';
 ---
 
 <!DOCTYPE html>
@@ -15,9 +18,21 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script src="/src/modules/router"></script>
 	</head>
-	<body>
-		<slot />
+	<body class={classes}>
+		<div class="layout">
+			<header>
+				<a href="/" class="text-gradient">Swup Test</a>
+			</header>
+			<div id="random">{Math.random()}</div>
+			<main id="swup" class="transition-fade">
+				<slot />
+			</main>
+			<footer>
+				Reached end of page. <a href="/">Return home</a>
+			</footer>
+		</div>
 	</body>
 </html>
 <style is:global>
