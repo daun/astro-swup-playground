@@ -34,7 +34,7 @@ const swup = new Swup({
       ]
     }),
     new SwupHeadPlugin({
-      // persistAssets: true,
+      persistAssets: true,
       awaitAssets: true
     }),
     // new SwupJSPlugin({
@@ -66,7 +66,7 @@ const swup = new Swup({
     //   ]
     // }),
     // new SwupPreloadPlugin(),
-    // new SwupParallelPlugin({ containers: ['#names'] }),
+    new SwupParallelPlugin({ containers: ['main'] }),
     // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
     //   routes: [
@@ -84,8 +84,7 @@ const swup = new Swup({
     new SwupMorphPlugin({
       containers: ['#random']
     }),
-
-    new SwupFadeTheme(),
+    // new SwupFadeTheme(),
     // new SwupSlideTheme({ reversed: false }),
     // new SwupOverlayTheme({
     //   // color: '#000',

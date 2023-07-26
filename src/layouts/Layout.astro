@@ -1,6 +1,7 @@
 ---
 export interface Props {
 	title: string;
+	classes?: string;
 }
 
 const { title } = Astro.props;
@@ -26,7 +27,7 @@ import '../styles/main.css';
 				<a href="/" class="text-gradient">Swup Test</a>
 			</header>
 			<div id="random">{Math.random()}</div>
-			<main id="swup" class="transition-fade">
+			<main id="swup" class="transition-slide">
 				<slot />
 			</main>
 			<footer>

@@ -133,7 +133,7 @@ h1 {
   */
 
 .transition-filter.is-changing {
-  transition: opacity 3s ease-in-out, transform 0.3s ease-in-out;
+  transition: opacity .3s ease-in-out, transform .3s ease-in-out;
 }
 
 .transition-filter.is-animating {
