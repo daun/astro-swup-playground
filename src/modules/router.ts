@@ -20,23 +20,23 @@ import SwupOverlayTheme from '../packages/overlay'
 const swup = new Swup({
   containers: ['header', 'main'],
   plugins: [
-    new SwupA11yPlugin(),
-    new SwupBodyClassPlugin(),
+    // new SwupA11yPlugin(),
+    // new SwupBodyClassPlugin(),
     new SwupDebugPlugin(),
-    new SwupFormsPlugin(),
-    new SwupFragmentPlugin({
-      rules: [
-        {
-          from: '/fragments/:filter?',
-          to: '/fragments/:filter?',
-          containers: ['#names']
-        }
-      ]
-    }),
-    new SwupHeadPlugin({
-      persistAssets: true,
-      awaitAssets: true
-    }),
+    // new SwupFormsPlugin(),
+    // new SwupFragmentPlugin({
+    //   rules: [
+    //     {
+    //       from: '/fragments/:filter?',
+    //       to: '/fragments/:filter?',
+    //       containers: ['#names']
+    //     }
+    //   ]
+    // }),
+    // new SwupHeadPlugin({
+    //   persistAssets: true,
+    //   awaitAssets: true
+    // }),
     // new SwupJSPlugin({
     //   animations: [
     //     {
@@ -66,7 +66,7 @@ const swup = new Swup({
     //   ]
     // }),
     // new SwupPreloadPlugin(),
-    new SwupParallelPlugin({ containers: ['main'] }),
+    // new SwupParallelPlugin({ containers: ['main'] }),
     // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
     //   routes: [
@@ -76,7 +76,7 @@ const swup = new Swup({
     //     { name: 'any', path: '(.*)' }
     //   ]
     // }),
-    new SwupScriptsPlugin(),
+    // new SwupScriptsPlugin(),
     new SwupScrollPlugin({
       offset: 30,
       doScrollingRightAway: true
