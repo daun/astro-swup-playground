@@ -41,6 +41,10 @@ footer {
   background-color: #F6F6F6;
 }
 
+main:focus {
+  outline: none;
+}
+
 h1 {
   font-size: 3rem;
   font-weight: 800;
