@@ -77,10 +77,10 @@ const swup = new Swup({
     //   ]
     // }),
     // new SwupScriptsPlugin(),
-    new SwupScrollPlugin({
-      offset: 30,
-      doScrollingRightAway: true
-    }),
+    // new SwupScrollPlugin({
+    //   offset: 30,
+    //   doScrollingRightAway: true
+    // }),
     new SwupMorphPlugin({
       containers: ['#random']
     }),
