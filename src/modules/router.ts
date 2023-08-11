@@ -22,7 +22,7 @@ const swup = new Swup({
   plugins: [
     // new SwupA11yPlugin(),
     // new SwupBodyClassPlugin(),
-    new SwupDebugPlugin(),
+    // new SwupDebugPlugin(),
     // new SwupFormsPlugin(),
     // new SwupFragmentPlugin({
     //   rules: [
@@ -65,7 +65,7 @@ const swup = new Swup({
     //     },
     //   ]
     // }),
-    // new SwupPreloadPlugin(),
+    new SwupPreloadPlugin({ throttle: 2, preloadVisibleLinks: true }),
     // new SwupParallelPlugin({ containers: ['main'] }),
     // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
@@ -94,8 +94,20 @@ const swup = new Swup({
   ]
 })
 
+// swup.preload(Array.from(document.querySelectorAll('a[href]')));
+
 swup.hooks.on('visit:start', (visit) => {
   console.log('visit', visit.from.url, visit.to.url, visit.animation.name);
   // @ts-ignore
   console.log('route', visit.from.route, visit.to.route);
+})
+
+// @ts-ignore
+swup.hooks.before('page:load', (visit, { page }) => {
+  console.log('preloaded', page)
+})
+
+// @ts-ignore
+swup.hooks.on('page:preload', (visit, { page }) => {
+  console.log('preloaded', page.url)
 })
