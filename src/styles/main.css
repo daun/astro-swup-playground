@@ -112,11 +112,13 @@ h1 {
   * Fade
   */
 
-.is-changing .transition-fade {
+.is-changing .transition-fade,
+.transition-fade.is-changing {
   transition: opacity .5s ease-in-out, transform .5s ease-in-out;
 }
 
-.is-animating .transition-fade {
+.is-animating .transition-fade,
+.transition-fade.is-animating {
   opacity: 0;
 }
 
