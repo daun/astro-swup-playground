@@ -65,7 +65,7 @@ const swup = new Swup({
     //     },
     //   ]
     // }),
-    new SwupPreloadPlugin({ throttle: 2, preloadVisibleLinks: true }),
+    new SwupPreloadPlugin({ throttle: 2, preloadVisibleLinks: false }),
     // new SwupParallelPlugin({ containers: ['main'] }),
     // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
@@ -103,11 +103,11 @@ swup.hooks.on('visit:start', (visit) => {
 })
 
 // @ts-ignore
-swup.hooks.before('page:load', (visit, { page }) => {
-  console.log('preloaded', page)
+swup.hooks.on('page:load', (visit, { page, cache }) => {
+  console.log('loaded', page, 'from cache:', cache)
 })
 
 // @ts-ignore
 swup.hooks.on('page:preload', (visit, { page }) => {
-  console.log('preloaded', page.url)
+  console.log('preloaded', page)
 })
