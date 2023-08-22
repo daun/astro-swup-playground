@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Persist" classes="persist">
+	<article>
+		<h1>Persist</h1>
+		<p class="instructions">
+			Testing persistent elements.
+			<a href="/persist/next">Go to next page</a>
+		</p>
+		<div class="instructions">
+			<video src="/video.mp4" autoplay loop muted data-swup-persist="video"></video>
+		</div>
+	</article>
+</Layout>
+
+<style>
+form {
+	display: block;
+}
+input {
+	width: 100%;
+}
+textarea {
+	width: 100%;
+}
+select {
+	width: 100%;
+}
+</style>

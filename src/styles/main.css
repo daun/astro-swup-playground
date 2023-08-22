@@ -5,6 +5,8 @@
 html {
   font-family: system-ui, sans-serif;
   background-color: #F6F6F6;
+  /* scroll-behavior: smooth; */
+  scrollbar-gutter: stable;
 }
 
 .layout {
@@ -49,6 +51,12 @@ h1 {
   font-size: 3rem;
   font-weight: 800;
   margin: 0;
+}
+
+video {
+	width: 100%;
+	height: auto;
+  border-radius: 0.4rem;
 }
 
 .text-gradient {
@@ -150,3 +158,11 @@ h1 {
 .transition-filter.is-previous-container {
   opacity: 0;
 }
+
+[data-swup-scroll-target] {
+  background: red;
+}
+
+/* :target {
+  background: blue;
+} */
