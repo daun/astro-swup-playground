@@ -22,7 +22,7 @@ const swup = new Swup({
   containers: ['header', 'main'],
   // animateHistoryBrowsing: true,
   plugins: [
-    // new SwupA11yPlugin({ respectReducedMotion: true }),
+    new SwupA11yPlugin({ respectReducedMotion: true }),
     // new SwupBodyClassPlugin(),
     // new SwupDebugPlugin(),
     // new SwupFormsPlugin(),
@@ -123,14 +123,14 @@ swup.hooks.on('visit:start', (visit) => {
 //   console.log('loaded', page, 'from cache:', cache)
 // })
 
-swup.hooks.before('page:preload', async (visit, { page }) => {
-  console.log('will preload', page.url)
-})
+// swup.hooks.before('page:preload', async (visit, { page }) => {
+//   console.log('will preload', page.url)
+// })
 
-swup.hooks.on('page:preload', async (visit, { page }) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
-  console.log('preloaded', page.url)
-})
+// swup.hooks.on('page:preload', async (visit, { page }) => {
+//   await new Promise((resolve) => setTimeout(resolve, 1000))
+//   console.log('preloaded', page.url)
+// })
 
 swup.hooks.on('visit:start', (visit) => {
   // visit.scroll.reset = false;
@@ -139,3 +139,7 @@ swup.hooks.on('visit:start', (visit) => {
   }
   // console.log('scroll target', visit.scroll.target)
 })
+
+swup.hooks.on('content:focus', (visit) => {
+  console.log('focus', visit.focus);
+});
