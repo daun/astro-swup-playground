@@ -22,10 +22,33 @@ const swup = new Swup({
   containers: ['header', 'main'],
   // animateHistoryBrowsing: true,
   plugins: [
-    new SwupA11yPlugin({ respectReducedMotion: true }),
+    new SwupA11yPlugin({
+      respectReducedMotion: true,
+      announcementTemplate: 'Harhar: {title}',
+      announcements: {
+        // title: 'Haha: {title}',
+        // url: 'Ah ja? {url}',
+        'en': {
+          title: 'Navigated to: {title}',
+          url: 'New page at {url}'
+        },
+        'fr': {
+          title: 'Navigué vers : {title}',
+          url: 'Nouvelle page à {url}'
+        },
+        'es': {
+          title: 'Navigado a: {titre}',
+          url: 'Nueva pagina en {url}'
+        },
+        // '*': {
+        //   title: '{title}',
+        //   url: '{url}'
+        // }
+      }
+    }),
     // new SwupBodyClassPlugin(),
-    // new SwupDebugPlugin(),
-    // new SwupFormsPlugin(),
+    new SwupDebugPlugin(),
+    new SwupFormsPlugin(),
     // new SwupFragmentPlugin({
     //   rules: [
     //     {
@@ -35,10 +58,10 @@ const swup = new Swup({
     //     }
     //   ]
     // }),
-    // new SwupHeadPlugin({
-    //   persistAssets: true,
-    //   awaitAssets: true
-    // }),
+    new SwupHeadPlugin({
+      persistAssets: true,
+      awaitAssets: true
+    }),
     // new SwupJSPlugin({
     //   animations: [
     //     {
@@ -67,8 +90,8 @@ const swup = new Swup({
     //     },
     //   ]
     // }),
-    // new SwupPreloadPlugin({ throttle: 1, preloadVisibleLinks: true }),
-    new SwupParallelPlugin({ containers: ['main'], keep: 2 }),
+    // new SwupPreloadPlugin({ throttle: 5, preloadVisibleLinks: true }),
+    // new SwupParallelPlugin({ containers: ['main'], keep: 2 }),
     // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
     //   routes: [
@@ -81,18 +104,18 @@ const swup = new Swup({
     // new SwupScriptsPlugin(),
     // new SwupScrollPlugin({
     //   animateScroll: {
-    //     betweenPages: true,
+    //     betweenPages: false,
     //     samePageWithHash: true,
     //     samePage: true
     //   },
-    //   doScrollingRightAway: true,
+    //   doScrollingRightAway: false,
     //   // shouldResetScrollPosition: (e) => false,
     //   offset: 30,
     //   markScrollTarget: true
     // }),
-    // new SwupMorphPlugin({
-    //   containers: ['#random']
-    // }),
+    new SwupMorphPlugin({
+      containers: ['#randoms']
+    }),
     // new SwupFadeTheme(),
     // new SwupSlideTheme({ reversed: false }),
     // new SwupOverlayTheme({
@@ -105,18 +128,6 @@ const swup = new Swup({
 
 // swup.preload(Array.from(document.querySelectorAll('a[href]')));
 
-swup.hooks.on('visit:start', (visit) => {
-  // visit.animation.animate = false;
-})
-
-// swup.hooks.on('visit:start', (visit) => {
-//   // console.log('visit', visit.from.url, visit.to.url);
-//   console.log('visit:start scroll', visit.scroll);
-// })
-
-// swup.hooks.on('content:scroll', (visit) => {
-//   console.log('content:scroll scroll', visit.scroll);
-// })
 
 // @ts-ignore
 // swup.hooks.on('page:load', (visit, { page, cache }) => {
@@ -124,24 +135,18 @@ swup.hooks.on('visit:start', (visit) => {
 // })
 
 // swup.hooks.before('page:preload', async (visit, { page }) => {
+//   await new Promise((resolve) => setTimeout(resolve, 1000))
 //   console.log('will preload', page.url)
 // })
 
 // swup.hooks.on('page:preload', async (visit, { page }) => {
-//   await new Promise((resolve) => setTimeout(resolve, 1000))
 //   console.log('preloaded', page.url)
 // })
 
-swup.hooks.on('visit:start', (visit) => {
-  // visit.scroll.reset = false;
-  if (visit.history.popstate) {
-    visit.scroll.target = '#top'
-  }
-  // console.log('scroll target', visit.scroll.target)
-})
 
-swup.hooks.on('content:focus', (visit) => {
-  console.log('focus', visit.focus);
+swup.hooks.before('content:announce', (visit) => {
+  console.log(visit.a11y)
+  // visit.a11y.announce = 'No way'
 });
 
 // swup.hooks.on('visit:start', (visit) => {
