@@ -2,16 +2,16 @@
 export interface Props {
 	title: string;
 	classes?: string;
+	lang?: string;
 }
 
-const { title } = Astro.props;
-const { classes = '' } = Astro.props;
+const { title, classes = '', lang = 'en' } = Astro.props;
 
 import '../styles/main.css';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description">
