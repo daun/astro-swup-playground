@@ -131,6 +131,49 @@ video {
 }
 
 /**
+  * Fade: ViewTransition API
+  */
+
+.transition-main {
+  view-transition-name: main;
+}
+
+/* ::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.75s;
+} */
+
+@keyframes move-out {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes move-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+::view-transition-old(main) {
+  animation: 0.4s ease-in-out both move-out;
+}
+
+::view-transition-new(main) {
+  animation: 0.4s ease-in-out both move-in;
+}
+
+/**
   * Fade: prev/next
   */
 

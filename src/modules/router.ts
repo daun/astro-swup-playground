@@ -143,3 +143,43 @@ swup.hooks.on('visit:start', (visit) => {
 swup.hooks.on('content:focus', (visit) => {
   console.log('focus', visit.focus);
 });
+
+// swup.hooks.on('visit:start', (visit) => {
+//   const useViewTransition = visit.animation.animate && !!document.startViewTransition;
+//   if (useViewTransition) {
+//     visit.animation.wait = true;
+//     visit.animation.animate = false;
+//     visit.animation.useViewTransition = true;
+//     document.documentElement.classList.add('is-view-transition');
+//   }
+// });
+
+// swup.hooks.on('visit:end', (visit) => {
+//   document.documentElement.classList.remove('is-view-transition');
+// });
+
+// swup.hooks.replace('visit:transition', async (visit, args, defaultHandler) => {
+//   if (!visit.animation.useViewTransition) {
+//     return defaultHandler(visit, args);
+//   }
+
+//   let rendered: boolean | null = null;
+//   const transition = document.startViewTransition(() => {
+//     return new Promise((resolve) => {
+//       swup.hooks.once('content:replace', () => resolve());
+//       defaultHandler(visit, args).then((wasRendered) => rendered = wasRendered);
+//     });
+//   });
+
+//   await transition.updateCallbackDone;
+
+//   console.log('rendered view?', rendered);
+
+//   if (rendered === false) {
+//     transition.skipTransition();
+//     return;
+//   }
+
+//   // await transition.ready;
+//   await transition.finished;
+// });
