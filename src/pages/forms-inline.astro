@@ -8,7 +8,7 @@ import Layout from '../layouts/Layout.astro';
 		<p class="instructions">
 			Testing inline form submissions.
 		</p>
-		<form id="form-inline-get" action="/forms-inline" class="transition-fade">
+		<form data-swup-form data-swup-inline-form id="form-inline-get" action="/forms-inline" class="transition-fade">
 			GET form
 			<input type="text" name="first" placeholder="First name">
 			<input type="text" name="last" placeholder="Last name">
@@ -20,7 +20,7 @@ import Layout from '../layouts/Layout.astro';
 			<textarea name="message"></textarea>
 			<button type="submit">Submit</button>
 		</form>
-		<form id="form-inline-post" action="/forms-inline" method="post" class="transition-fade">
+		<form data-swup-form data-swup-inline-form id="form-inline-post" action="/forms-inline" method="post" class="transition-fade">
 			POST form
 			<input type="text" name="first" placeholder="First name">
 			<input type="text" name="last" placeholder="Last name">
