@@ -19,7 +19,6 @@ class o extends t {
       }),
       (this.options = void 0),
       (this.liveRegion = void 0),
-      console.log(e),
       (e.announcements = {
         ...this.defaults.announcements,
         title: e.announcementTemplate ?? this.defaults.announcements.title,
@@ -61,8 +60,6 @@ class o extends t {
       } = this.options,
       i = window.location.pathname,
       s = o[document.documentElement.lang || "*"] || o["*"] || o;
-    console.log(o);
-    console.log(s);
     if ("object" != typeof s) return;
     const a = document.querySelector(`${t} ${n}`);
     let r = a?.getAttribute("aria-label") || a?.textContent || document.title;
