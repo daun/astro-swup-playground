@@ -23,30 +23,7 @@ const swup = new Swup({
   containers: ['header', 'main'],
   // animateHistoryBrowsing: true,
   plugins: [
-    new SwupA11yPlugin({
-      respectReducedMotion: true,
-      announcementTemplate: 'Harhar: {title}',
-      announcements: {
-        // title: 'Haha: {title}',
-        // url: 'Ah ja? {url}',
-        'en': {
-          title: 'Navigated to: {title}',
-          url: 'New page at {url}'
-        },
-        'fr': {
-          title: 'Navigué vers : {title}',
-          url: 'Nouvelle page à {url}'
-        },
-        'es': {
-          title: 'Navigado a: {titre}',
-          url: 'Nueva pagina en {url}'
-        },
-        // '*': {
-        //   title: '{title}',
-        //   url: '{url}'
-        // }
-      }
-    }),
+    new SwupA11yPlugin({ respectReducedMotion: true }),
     // new SwupBodyClassPlugin(),
     new SwupDebugPlugin(),
     new SwupFormsPlugin(),
@@ -59,38 +36,7 @@ const swup = new Swup({
     //     }
     //   ]
     // }),
-    new SwupHeadPlugin({
-      persistAssets: true,
-      awaitAssets: true
-    }),
-    // new SwupJSPlugin({
-    //   animations: [
-    //     {
-    //       from: '(.*)',
-    //       to: '(.*)',
-    //       in: async () => {
-    //         const container = document.querySelector('main');
-    //         await container!.animate([{ opacity: 0 }, { opacity: 1 }], 300).finished;
-    //       },
-    //       out: async () => {
-    //         const container = document.querySelector('main');
-    //         await container!.animate([{ opacity: 1 }, { opacity: 0 }], 300).finished;
-    //       }
-    //     },
-    //     {
-    //       from: '(.*)',
-    //       to: '(.*)',
-    //       in: async () => {
-    //         const container = document.querySelector('main');
-    //         await container!.animate([{ opacity: 0.5 }, { opacity: 1 }], 600).finished;
-    //       },
-    //       out: async () => {
-    //         const container = document.querySelector('main');
-    //         await container!.animate([{ opacity: 1 }, { opacity: 0.5 }], 600).finished;
-    //       }
-    //     },
-    //   ]
-    // }),
+    new SwupHeadPlugin({ persistAssets: true, awaitAssets: true }),
     // new SwupPreloadPlugin({ throttle: 5, preloadVisibleLinks: true }),
     // new SwupParallelPlugin({ containers: ['main'], keep: 2 }),
     // new SwupProgressPlugin(),
@@ -114,78 +60,9 @@ const swup = new Swup({
     //   offset: 30,
     //   markScrollTarget: true
     // }),
-    new SwupMorphPlugin({
-      containers: ['#randoms']
-    }),
+    new SwupMorphPlugin({ containers: ['#randoms'] }),
     // new SwupFadeTheme(),
     // new SwupSlideTheme({ reversed: false }),
-    // new SwupOverlayTheme({
-    //   // color: '#000',
-    //   duration: 500,
-    //   direction: 'to-top',
-    // }),
+    // new SwupOverlayTheme({ color: '#000', duration: 500, direction: 'to-top' }),
   ]
 })
-
-// swup.preload(Array.from(document.querySelectorAll('a[href]')));
-
-
-// @ts-ignore
-// swup.hooks.on('page:load', (visit, { page, cache }) => {
-//   console.log('loaded', page, 'from cache:', cache)
-// })
-
-// swup.hooks.before('page:preload', async (visit, { page }) => {
-//   await new Promise((resolve) => setTimeout(resolve, 1000))
-//   console.log('will preload', page.url)
-// })
-
-// swup.hooks.on('page:preload', async (visit, { page }) => {
-//   console.log('preloaded', page.url)
-// })
-
-
-swup.hooks.before('content:announce', (visit) => {
-  console.log(visit.a11y)
-  // visit.a11y.announce = 'No way'
-});
-
-// swup.hooks.on('visit:start', (visit) => {
-//   const useViewTransition = visit.animation.animate && !!document.startViewTransition;
-//   if (useViewTransition) {
-//     visit.animation.wait = true;
-//     visit.animation.animate = false;
-//     visit.animation.useViewTransition = true;
-//     document.documentElement.classList.add('is-view-transition');
-//   }
-// });
-
-// swup.hooks.on('visit:end', (visit) => {
-//   document.documentElement.classList.remove('is-view-transition');
-// });
-
-// swup.hooks.replace('visit:transition', async (visit, args, defaultHandler) => {
-//   if (!visit.animation.useViewTransition) {
-//     return defaultHandler(visit, args);
-//   }
-
-//   let rendered: boolean | null = null;
-//   const transition = document.startViewTransition(() => {
-//     return new Promise((resolve) => {
-//       swup.hooks.once('content:replace', () => resolve());
-//       defaultHandler(visit, args).then((wasRendered) => rendered = wasRendered);
-//     });
-//   });
-
-//   await transition.updateCallbackDone;
-
-//   console.log('rendered view?', rendered);
-
-//   if (rendered === false) {
-//     transition.skipTransition();
-//     return;
-//   }
-
-//   // await transition.ready;
-//   await transition.finished;
-// });
