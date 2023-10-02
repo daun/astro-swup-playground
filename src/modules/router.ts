@@ -20,6 +20,7 @@ import SwupSlideTheme from '../packages/slide-theme';
 import SwupOverlayTheme from '../packages/overlay-theme';
 
 const swup = new Swup({
+  // native: true,
   containers: ['header', 'main'],
   // animateHistoryBrowsing: true,
   plugins: [
