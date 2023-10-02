@@ -15,14 +15,16 @@ import '../styles/transitions.css';
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script src="/src/modules/router"></script>
+		<slot name="head"/>
 	</head>
 	<body class={classes}>
+		<slot name="body"/>
 		<div class="layout">
 			<header>
 				<a href="/" class="text-gradient">Swup Test</a>
