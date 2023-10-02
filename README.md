@@ -2,33 +2,33 @@
 
 Playground for testing and prototyping [swup](https://swup.js.org) features and plugins.
 
-## 🚀 Project Structure
+## Testing swup features and plugins
 
-Inside of your Astro project, you'll see the following folders and files:
+- Swup is initialised in `src/modules/router.ts`.
+- Transition styles are defined in `src/styles/transitions.css`
+- Feature checks are defined in `src/pages`
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+For simple tests, copy the `dist` module file of swup or any plugin into the `packages` folder and
+import it instead of the official package. For more realistic tests, use
+[npm link](https://docs.npmjs.com/cli/v8/commands/npm-link) or
+[yalc](https://github.com/wclr/yalc/) and import as usual from the package.
+
+```sh
+cp ./preload-plugin/dist/index.module.js ./astro/src/packages/preload-plugin.js
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+```js
+import SwupPreloadPlugin from '../packages/preload-plugin';
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Testing the @swup/astro integration
 
-Any static assets, like images, can be placed in the `public/` directory.
+This project has the official swup integration installed, but disabled. To test the integration:
 
-## 🧞 Commands
+1. In `Layout.astro`, comment the router script `<script src="/src/modules/router"></script>`
+2. In `astro.config.mjs`, uncomment the swup integration import and initilisation
 
-All commands are run from the root of the project, from a terminal:
+## Commands
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
