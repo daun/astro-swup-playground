@@ -1,5 +1,6 @@
 import Swup from 'swup';
 // import Swup from '../packages/swup';
+
 import SwupA11yPlugin from '../packages/a11y-plugin';
 import SwupBodyClassPlugin from '../packages/body-class-plugin';
 import SwupDebugPlugin from '../packages/debug-plugin';
@@ -14,9 +15,9 @@ import SwupRouteNamePlugin from '../packages/route-name-plugin';
 import SwupScriptsPlugin from '../packages/scripts-plugin';
 import SwupScrollPlugin from '../packages/scroll-plugin';
 import SwupMorphPlugin from '../packages/morph-plugin';
-import SwupFadeTheme from '../packages/fade'
-import SwupSlideTheme from '../packages/slide'
-import SwupOverlayTheme from '../packages/overlay'
+import SwupFadeTheme from '../packages/fade-theme';
+import SwupSlideTheme from '../packages/slide-theme';
+import SwupOverlayTheme from '../packages/overlay-theme';
 
 const swup = new Swup({
   containers: ['header', 'main'],
