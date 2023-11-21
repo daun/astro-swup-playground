@@ -76,7 +76,7 @@ const swup = new Swup({
     //     { name: 'any', path: '(.*)' }
     //   ]
     // }),
-    // new SwupScriptsPlugin(),
+    new SwupScriptsPlugin(),
     // new SwupScrollPlugin({
     //   animateScroll: {
     //     betweenPages: false,
