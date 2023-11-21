@@ -28,7 +28,7 @@ const swup = new Swup({
   plugins: [
     new SwupA11yPlugin({ respectReducedMotion: true, autofocus: true }),
     // new SwupBodyClassPlugin(),
-    new SwupDebugPlugin(),
+    // new SwupDebugPlugin(),
     new SwupFormsPlugin(),
     new SwupFragmentPlugin({
       rules: [
@@ -131,5 +131,21 @@ const swup = new Swup({
 window.swup = swup;
 
 swup.hooks.on('visit:start', (visit) => {
-  console.log('visit:start', visit.to.url);
+  console.log('visit:start', '----------------------------');
+})
+
+window.addEventListener('swup:any', ({ detail: { hook, visit, args }}) => {
+  const normal = 'color: black; font-weight: normal;';
+  const bold = 'color: black; font-weight: bold;';
+  const blue = 'color: blue; font-weight: bold;';
+  const red = 'color: red; font-weight: bold;';
+  const green = 'color: green; font-weight: bold;';
+  const name = [hook, hook === 'content:replace' ? blue : bold];
+  const url = [visit.to.url, normal];
+  const status = visit.aborted ? ['aborted', red] : ['valid', green]; // ['valid', green]
+  const params = false ? [args] : [];
+  console.log(
+    `%c ${name[0]} %c ${url[0]} %c ${status[0]}`,
+    name[1], url[1], status[1], ...params
+  );
 })
