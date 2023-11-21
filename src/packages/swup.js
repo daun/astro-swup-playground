@@ -315,6 +315,9 @@ class S {
   abort() {
     this.state = b.ABORTED;
   }
+  get done() {
+    return this.state >= b.COMPLETED;
+  }
   get aborted() {
     return this.state === b.ABORTED;
   }
@@ -420,14 +423,14 @@ class U {
   async run(t, e, i) {
     const s = [];
     for (const { hook: n, handler: o, defaultHandler: r, once: a } of t) {
-      if ((a && this.off(n, o), null != e && e.aborted)) continue;
+      if ((a && this.off(n, o), null != e && e.done)) continue;
       const t = await v(o, [e || this.swup.visit, i, r]);
       s.push(t);
     }
     return s;
   }
   runSync(t, e, i) {
-    if (null != e && e.aborted) return [];
+    if (null != e && e.done) return [];
     const s = [];
     for (const { hook: n, handler: o, defaultHandler: r, once: a } of t) {
       a && this.off(n, o);
@@ -473,7 +476,7 @@ class U {
     );
   }
   dispatchDomEvent(t, e, i) {
-    if (null != e && e.aborted) return;
+    if (null != e && e.done) return;
     const s = { hook: t, args: i, visit: e || this.swup.visit };
     document.dispatchEvent(
       new CustomEvent("swup:any", { detail: s, bubbles: !0 })
@@ -513,10 +516,10 @@ async function T({ elements: t, selector: e }) {
         const i = window.getComputedStyle(t),
           s = R(i, `${C}Delay`),
           n = R(i, `${C}Duration`),
-          o = $(s, n),
+          o = L(s, n),
           r = R(i, `${D}Delay`),
           a = R(i, `${D}Duration`),
-          l = $(r, a);
+          l = L(r, a);
         let h = null,
           c = 0,
           u = 0;
@@ -566,11 +569,11 @@ async function T({ elements: t, selector: e }) {
 function R(t, e) {
   return (t[e] || "").split(", ");
 }
-function $(t, e) {
+function L(t, e) {
   for (; t.length < e.length; ) t = t.concat(t);
   return Math.max(...e.map((e, i) => E(e) + E(t[i])));
 }
-function I(t, e = {}, s = {}) {
+function $(t, e = {}, s = {}) {
   if ("string" != typeof t)
     throw new Error("swup.navigate() requires a URL parameter");
   if (this.shouldIgnoreVisit(t, { el: s.el, event: s.event }))
@@ -579,7 +582,7 @@ function I(t, e = {}, s = {}) {
     r = this.createVisit(i({}, s, { to: n, hash: o }));
   this.performNavigation(r, e);
 }
-async function L(t, e = {}) {
+async function I(t, e = {}) {
   if (this.navigating) {
     if (this.visit.state >= b.ENTERING)
       return (
@@ -632,19 +635,23 @@ async function L(t, e = {}) {
       const { html: e } = await i;
       t.to.html = e;
     }
-    if (t.aborted) return;
-    await this.hooks.call("visit:transition", t, void 0, async () => {
-      t.advance(b.LEAVING);
-      const e = this.animatePageOut(t),
-        [s] = await Promise.all([i, e]);
-      return (
-        await this.renderPage(t, s),
-        t.advance(b.ENTERING),
-        await this.animatePageIn(t),
-        !0
-      );
-    }),
-      await this.hooks.call("visit:end", t, void 0, () => this.classes.clear()),
+    if (t.done) return;
+    if (
+      (await this.hooks.call("visit:transition", t, void 0, async () => {
+        t.advance(b.LEAVING);
+        const e = this.animatePageOut(t),
+          [s] = await Promise.all([i, e]);
+        return (
+          await this.renderPage(t, s),
+          t.advance(b.ENTERING),
+          await this.animatePageIn(t),
+          !0
+        );
+      }),
+      t.done)
+    )
+      return;
+    await this.hooks.call("visit:end", t, void 0, () => this.classes.clear()),
       (t.state = b.COMPLETED),
       (this.navigating = !1),
       this.onVisitEnd && (this.onVisitEnd(), (this.onVisitEnd = void 0));
@@ -658,10 +665,9 @@ async function L(t, e = {}) {
       window.history.go(-1);
   }
 }
-const x = async function (t) {
+const O = async function (t) {
     t.animation.animate
-      ? t.aborted ||
-        (await this.hooks.call("animation:out:start", t, void 0, (t) => {
+      ? (await this.hooks.call("animation:out:start", t, void 0, (t) => {
           this.classes.add("is-changing", "is-leaving", "is-animating"),
             t.history.popstate && this.classes.add("is-popstate"),
             t.animation.name && this.classes.add(`to-${s(t.animation.name)}`);
@@ -678,7 +684,7 @@ const x = async function (t) {
         await this.hooks.call("animation:out:end", t, void 0))
       : await this.hooks.call("animation:skip", t, void 0);
   },
-  O = function ({ html: t }, { containers: e } = this.options) {
+  x = function ({ html: t }, { containers: e } = this.options) {
     var i;
     const s = new DOMParser().parseFromString(t, "text/html"),
       n = (null == (i = s.querySelector("title")) ? void 0 : i.innerText) || "";
@@ -741,6 +747,7 @@ const x = async function (t) {
   },
   H = async function (t) {
     if (!t.animation.animate) return;
+    if (t.done) return;
     const e = this.hooks.call(
       "animation:in:await",
       t,
@@ -757,7 +764,7 @@ const x = async function (t) {
       await this.hooks.call("animation:in:end", t, void 0);
   },
   q = async function (t, e) {
-    if (t.aborted) return;
+    if (t.done) return;
     const { url: i, html: o } = e;
     this.classes.remove("is-leaving"),
       this.isSameResolvedUrl(n(), i) ||
@@ -872,16 +879,16 @@ class _ {
       (this.unuse = M),
       (this.findPlugin = B),
       (this.log = () => {}),
-      (this.navigate = I),
-      (this.performNavigation = L),
+      (this.navigate = $),
+      (this.performNavigation = I),
       (this.createVisit = A),
       (this.delegateEvent = a),
       (this.fetchPage = u),
       (this.awaitAnimations = T),
       (this.renderPage = q),
-      (this.replaceContent = O),
+      (this.replaceContent = x),
       (this.animatePageIn = H),
-      (this.animatePageOut = x),
+      (this.animatePageOut = O),
       (this.scrollToContent = N),
       (this.getAnchorElement = P),
       (this.getCurrentUrl = n),
@@ -950,7 +957,6 @@ class _ {
         this.hooks.callSync("link:click", o, { el: e, event: t }, () => {
           var e;
           const i = null != (e = o.from.url) ? e : "";
-          console.log(JSON.stringify(s), JSON.stringify(i));
           t.preventDefault(),
             s && s !== i
               ? this.isSameResolvedUrl(s, i) || this.performNavigation(o)

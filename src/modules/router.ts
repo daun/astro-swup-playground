@@ -58,45 +58,46 @@ const swup = new Swup({
     //     // },
 
     //     // Web animations API: sequential
-    //     {
-    //       from: '(.*)',
-    //       to: '(.*)',
-    //       out: async () => {
-    //         const container = document.querySelector('main');
-    //         const opacityStart = getComputedStyle(container).opacity;
-    //         const transformStart = getComputedStyle(container).transform;
-    //         await container!.animate([
-    //           { opacity: opacityStart, transform: transformStart },
-    //           { opacity: 0, transform: 'translateY(10px)' }
-    //         ], 400).finished;
-    //       },
-    //       in: async () => {
-    //         const container = document.querySelector('main');
-    //         await container!.animate([
-    //           { opacity: 0, transform: 'translateY(10px)' },
-    //           { opacity: 1, transform: 'none' }
-    //         ], 400).finished;
-    //       }
-    //     },
+    //     // {
+    //     //   from: '(.*)',
+    //     //   to: '(.*)',
+    //     //   out: async () => {
+    //     //     const container = document.querySelector('main');
+    //     //     const { opacity, transform } = getComputedStyle(container);
+    //     //     const duration = 400 * (opacity - 0);
+    //     //     await container!.animate([
+    //     //       { opacity, transform },
+    //     //       { opacity: 0, transform: 'translateY(10px)' }
+    //     //     ], duration).finished;
+    //     //   },
+    //     //   in: async () => {
+    //     //     const container = document.querySelector('main');
+    //     //     const { opacity, transform } = getComputedStyle(container);
+    //     //     await container!.animate([
+    //     //       { opacity: 0, transform: 'translateY(10px)' },
+    //     //       { opacity: 1, transform: 'none' }
+    //     //     ], 400).finished;
+    //     //   }
+    //     // },
 
-    //     // GSAP: sequential
-    //     {
-    //       from: '(.*)',
-    //       to: '(.*)',
-    //       out: (onComplete) => {
+    //     // // GSAP: sequential
+    //     // {
+    //     //   from: '(.*)',
+    //     //   to: '(.*)',
+    //     //   out: (onComplete) => {
 
-    //         const container = document.querySelector('main');
-    //         // container.style.opacity = 1;
-    //         gsap.to(container, { opacity: 0, duration: 0.5, onComplete });
-    //         console.log('out', container);
-    //       },
-    //       in: (onComplete) => {
-    //         const container = document.querySelector('main');
-    //         container.style.opacity = 0;
-    //         gsap.to(container, { opacity: 1, duration: 0.5, onComplete });
-    //         console.log('in', container);
-    //       }
-    //     },
+    //     //     const container = document.querySelector('main');
+    //     //     // container.style.opacity = 1;
+    //     //     gsap.to(container, { opacity: 0, duration: 0.5, onComplete });
+    //     //     console.log('out', container);
+    //     //   },
+    //     //   in: (onComplete) => {
+    //     //     const container = document.querySelector('main');
+    //     //     container.style.opacity = 0;
+    //     //     gsap.to(container, { opacity: 1, duration: 0.5, onComplete });
+    //     //     console.log('in', container);
+    //     //   }
+    //     // },
     //   ]
     // }),
     // new SwupParallelPlugin({ containers: ['main'], keep: 2 }),

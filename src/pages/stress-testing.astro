@@ -19,17 +19,17 @@ import Layout from '../layouts/Layout.astro';
 			for aborted visits. You should land back at this page, with various intermediate stops.
 			<br><br>
 
-			<rapid-navigation-trigger phase="out" label="Abort during out-phase (works)" urls="/, /history"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="in" label="Abort during in-phase (works)" urls="/, /history"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="in" label="Abort fragments (works)" urls="/fragments, /fragments/filter-1, /fragments/filter-2, /fragments/filter-3"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="out" label="Abort consecutive (broken)" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger>
+			<rapid-navigation-trigger phase="out" label="Abort during out-phase" urls="/, /history"></rapid-navigation-trigger><br>
+			<rapid-navigation-trigger phase="in" label="Abort during in-phase" urls="/, /history"></rapid-navigation-trigger><br>
+			<rapid-navigation-trigger phase="out" label="Abort consecutive visits" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger><br>
+			<rapid-navigation-trigger phase="out" label="Abort fragments" urls="/fragments, /fragments/filter-1, /fragments/filter-2, /fragments/filter-3"></rapid-navigation-trigger><br>
 		</p>
 	</article>
 
 	<script>
 
 		customElements.define('rapid-navigation-trigger', class extends HTMLElement {
-			timeout = 170;
+			timeout = 200;
 			phase = 'out';
 			label = 'Trigger rapid navigation';
 			link: HTMLElement;
