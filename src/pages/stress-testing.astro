@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Stress testing" classes="stress-testing">
+	<article>
+		<h1>Stress testing</h1>
+		<p class="instructions">
+			Testing swup behavior on rapid clicks and consecutive visits.
+		</p>
+		<h2>Double clicks</h2>
+		<p class="instructions">
+			<a href="/">Double-click this link</a> and check the debug output for triggered hooks.
+			There should only be a single visit that happened.
+		</p>
+		<h2>Rapid navigation</h2>
+		<p class="instructions">
+			Trigger automated rapid navigations. There should be no flickering and no hooks called
+			for aborted visits. You should land back at this page, with various intermediate stops.
+			<br><br>
+
+			<rapid-navigation-trigger phase="out" label="Abort during out-phase"></rapid-navigation-trigger><br>
+			<rapid-navigation-trigger phase="in" label="Abort during in-phase"></rapid-navigation-trigger>
+		</p>
+	</article>
+
+	<script>
+		customElements.define('rapid-navigation-trigger', class extends HTMLElement {
+			timeout = 200;
+			phase = 'out';
+			label = 'Trigger rapid navigation';
+			link: HTMLElement;
+			url = window.location.href;
+			constructor() {
+				super();
+				this.phase = this.getAttribute('phase') || this.phase;
+				this.label = this.getAttribute('label') || this.label;
+				this.innerHTML = `<a href="">${this.label}</a>`;
+				this.link = this.querySelector('a')!;
+				this.link.addEventListener('click', (event) => {
+					event.preventDefault();
+					this.triggerRapidNavigation();
+				});
+			}
+			triggerRapidNavigation() {
+				const interruptAt = this.phase === 'in' ? 'animation:in:start' : 'animation:out:start';
+				this.go('/');
+				this.on(interruptAt, () => this.go(this.url, this.timeout));
+			}
+			go(url, timeout = 0) {
+				console.log(`Going to ${url}`);
+				setTimeout(() => window.swup.navigate(url), timeout);
+			}
+			on(hook, callback) {
+				window.swup.hooks.once(hook, callback);
+			}
+		});
+	</script>
+
+</Layout>

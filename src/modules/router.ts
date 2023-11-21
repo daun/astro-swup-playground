@@ -38,7 +38,34 @@ const swup = new Swup({
     //   ]
     // }),
     new SwupHeadPlugin({ persistAssets: true, awaitAssets: true }),
-    // new SwupPreloadPlugin({ throttle: 5, preloadVisibleLinks: true }),
+    // new SwupJSPlugin({
+    //   animations: [
+    //     // {
+    //     //   from: '(.*)',
+    //     //   to: '(.*)',
+    //     //   in: async () => {
+    //     //     const next = document.querySelector('main');
+    //     //     const prev = document.querySelector('main + main');
+    //     //     await Promise.all([
+    //     //       next!.animate([{ opacity: 0, transform: 'translateX(100%)' }, {}], 500).finished,
+    //     //       prev!.animate([{}, { opacity: 0, transform: 'translateX(-100%)' }], 500).finished
+    //     //     ]);
+    //     //   }
+    //     // },
+    //     {
+    //       from: '(.*)',
+    //       to: '(.*)',
+    //       in: async () => {
+    //         const container = document.querySelector('main');
+    //         await container!.animate([{ opacity: 0 }, { opacity: 1 }], 300).finished;
+    //       },
+    //       out: async () => {
+    //         const container = document.querySelector('main');
+    //         await container!.animate([{ opacity: 1 }, { opacity: 0 }], 300).finished;
+    //       }
+    //     },
+    //   ]
+    // }),
     // new SwupParallelPlugin({ containers: ['main'], keep: 2 }),
     // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
@@ -61,9 +88,11 @@ const swup = new Swup({
     //   offset: 30,
     //   markScrollTarget: true
     // }),
-    new SwupMorphPlugin({ containers: ['#randoms'] }),
+    // new SwupMorphPlugin({ containers: ['#randoms'] }),
     // new SwupFadeTheme(),
     // new SwupSlideTheme({ reversed: false }),
     // new SwupOverlayTheme({ color: '#000', duration: 500, direction: 'to-top' }),
   ]
 })
+
+window.swup = swup;

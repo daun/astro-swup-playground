@@ -2,7 +2,7 @@
   * Slide
   */
 
-.is-changing .transition-slide {
+html.is-changing .transition-slide {
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
 }
 
@@ -21,12 +21,12 @@
   * Fade
   */
 
-.is-changing .transition-fade,
+html.is-changing .transition-fade,
 .transition-fade.is-changing {
   transition: opacity .5s ease-in-out, transform .5s ease-in-out;
 }
 
-.is-animating .transition-fade,
+html.is-animating .transition-fade,
 .transition-fade.is-animating {
   opacity: 0;
 }
@@ -72,6 +72,17 @@
 
 ::view-transition-new(main) {
   animation: 0.4s ease-in-out both move-in;
+}
+
+/* Fallback for non-supported browsers */
+.is-changing .transition-main,
+.transition-main.is-changing {
+  transition: opacity .5s ease-in-out, transform .5s ease-in-out;
+}
+
+.is-animating .transition-fade,
+.transition-fade.is-animating {
+  opacity: 0;
 }
 
 /**
