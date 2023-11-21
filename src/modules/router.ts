@@ -1,5 +1,5 @@
-import Swup from 'swup';
-// import Swup from '../packages/swup';
+// import Swup from 'swup';
+import Swup from '../packages/swup';
 
 import SwupA11yPlugin from '../packages/a11y-plugin';
 import SwupBodyClassPlugin from '../packages/body-class-plugin';
