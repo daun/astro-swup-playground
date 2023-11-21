@@ -19,40 +19,58 @@ import Layout from '../layouts/Layout.astro';
 			for aborted visits. You should land back at this page, with various intermediate stops.
 			<br><br>
 
-			<rapid-navigation-trigger phase="out" label="Abort during out-phase"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="in" label="Abort during in-phase"></rapid-navigation-trigger>
+			<rapid-navigation-trigger phase="out" label="Abort during out-phase (works)" urls="/, /history"></rapid-navigation-trigger><br>
+			<rapid-navigation-trigger phase="in" label="Abort during in-phase (works)" urls="/, /history"></rapid-navigation-trigger><br>
+			<rapid-navigation-trigger phase="in" label="Abort fragments (works)" urls="/fragments, /fragments/filter-1, /fragments/filter-2, /fragments/filter-3"></rapid-navigation-trigger><br>
+			<rapid-navigation-trigger phase="out" label="Abort consecutive (broken)" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger>
 		</p>
 	</article>
 
 	<script>
+
 		customElements.define('rapid-navigation-trigger', class extends HTMLElement {
-			timeout = 200;
+			timeout = 170;
 			phase = 'out';
 			label = 'Trigger rapid navigation';
 			link: HTMLElement;
-			url = window.location.href;
+			urls: string[];
+			queue = Promise.resolve();
 			constructor() {
 				super();
+
+				this.urls = (this.getAttribute('urls') || '/').split(',').map((url) => url.trim());
+				this.urls.push(window.location.pathname);
+
 				this.phase = this.getAttribute('phase') || this.phase;
 				this.label = this.getAttribute('label') || this.label;
-				this.innerHTML = `<a href="">${this.label}</a>`;
+
+				this.innerHTML = `<a href="/" data-no-swup>${this.label}</a>`;
 				this.link = this.querySelector('a')!;
 				this.link.addEventListener('click', (event) => {
 					event.preventDefault();
 					this.triggerRapidNavigation();
 				});
 			}
-			triggerRapidNavigation() {
-				const interruptAt = this.phase === 'in' ? 'animation:in:start' : 'animation:out:start';
-				this.go('/');
-				this.on(interruptAt, () => this.go(this.url, this.timeout));
+			async triggerRapidNavigation() {
+				const interruptAt = this.phase === 'in' ? 'content:replace' : 'visit:start';
+				for (const url of this.urls) {
+					const ready = this.waitForHook(interruptAt);
+					this.navigate(url);
+					await ready;
+					await this.sleep(this.timeout);
+				}
 			}
-			go(url, timeout = 0) {
-				console.log(`Going to ${url}`);
-				setTimeout(() => window.swup.navigate(url), timeout);
+			navigate(url) {
+				console.log(`Navigating to ${url}`);
+				window.swup.navigate(url);
 			}
-			on(hook, callback) {
-				window.swup.hooks.once(hook, callback);
+			waitForHook(hook) {
+				return new Promise((resolve) => {
+					window.swup.hooks.once(hook, (visit) => resolve(visit));
+				});
+			}
+			sleep(ms) {
+				return new Promise((resolve) => setTimeout(resolve, ms));
 			}
 		});
 	</script>

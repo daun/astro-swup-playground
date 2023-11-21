@@ -3,7 +3,7 @@
   */
 
 html.is-changing .transition-slide {
-  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 
 .transition-slide.is-next-container {

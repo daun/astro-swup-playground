@@ -30,75 +30,75 @@ const swup = new Swup({
     // new SwupBodyClassPlugin(),
     new SwupDebugPlugin(),
     new SwupFormsPlugin(),
-    // new SwupFragmentPlugin({
-    //   rules: [
-    //     {
-    //       from: '/fragments/:filter?',
-    //       to: '/fragments/:filter?',
-    //       containers: ['#names']
-    //     }
-    //   ]
-    // }),
-    new SwupHeadPlugin({ persistAssets: true, awaitAssets: true }),
-    new SwupJSPlugin({
-      animations: [
-
-        // Web animations API: parallel
-        // {
-        //   from: '(.*)',
-        //   to: '(.*)',
-        //   in: async () => {
-        //     const next = document.querySelector('main');
-        //     const prev = document.querySelector('main + main');
-        //     await Promise.all([
-        //       next!.animate([{ opacity: 0, transform: 'translateX(100%)' }, {}], 500).finished,
-        //       prev!.animate([{}, { opacity: 0, transform: 'translateX(-100%)' }], 500).finished
-        //     ]);
-        //   }
-        // },
-
-        // Web animations API: sequential
+    new SwupFragmentPlugin({
+      rules: [
         {
-          from: '(.*)',
-          to: '(.*)',
-          out: async () => {
-            const container = document.querySelector('main');
-            const opacityStart = getComputedStyle(container).opacity;
-            const transformStart = getComputedStyle(container).transform;
-            await container!.animate([
-              { opacity: opacityStart, transform: transformStart },
-              { opacity: 0, transform: 'translateY(10px)' }
-            ], 400).finished;
-          },
-          in: async () => {
-            const container = document.querySelector('main');
-            await container!.animate([
-              { opacity: 0, transform: 'translateY(10px)' },
-              { opacity: 1, transform: 'none' }
-            ], 400).finished;
-          }
-        },
-
-        // GSAP: sequential
-        {
-          from: '(.*)',
-          to: '(.*)',
-          out: (onComplete) => {
-
-            const container = document.querySelector('main');
-            // container.style.opacity = 1;
-            gsap.to(container, { opacity: 0, duration: 0.5, onComplete });
-            console.log('out', container);
-          },
-          in: (onComplete) => {
-            const container = document.querySelector('main');
-            container.style.opacity = 0;
-            gsap.to(container, { opacity: 1, duration: 0.5, onComplete });
-            console.log('in', container);
-          }
-        },
+          from: '/fragments/:filter?',
+          to: '/fragments/:filter?',
+          containers: ['#names']
+        }
       ]
     }),
+    new SwupHeadPlugin({ persistAssets: true, awaitAssets: true }),
+    // new SwupJSPlugin({
+    //   animations: [
+
+    //     // Web animations API: parallel
+    //     // {
+    //     //   from: '(.*)',
+    //     //   to: '(.*)',
+    //     //   in: async () => {
+    //     //     const next = document.querySelector('main');
+    //     //     const prev = document.querySelector('main + main');
+    //     //     await Promise.all([
+    //     //       next!.animate([{ opacity: 0, transform: 'translateX(100%)' }, {}], 500).finished,
+    //     //       prev!.animate([{}, { opacity: 0, transform: 'translateX(-100%)' }], 500).finished
+    //     //     ]);
+    //     //   }
+    //     // },
+
+    //     // Web animations API: sequential
+    //     {
+    //       from: '(.*)',
+    //       to: '(.*)',
+    //       out: async () => {
+    //         const container = document.querySelector('main');
+    //         const opacityStart = getComputedStyle(container).opacity;
+    //         const transformStart = getComputedStyle(container).transform;
+    //         await container!.animate([
+    //           { opacity: opacityStart, transform: transformStart },
+    //           { opacity: 0, transform: 'translateY(10px)' }
+    //         ], 400).finished;
+    //       },
+    //       in: async () => {
+    //         const container = document.querySelector('main');
+    //         await container!.animate([
+    //           { opacity: 0, transform: 'translateY(10px)' },
+    //           { opacity: 1, transform: 'none' }
+    //         ], 400).finished;
+    //       }
+    //     },
+
+    //     // GSAP: sequential
+    //     {
+    //       from: '(.*)',
+    //       to: '(.*)',
+    //       out: (onComplete) => {
+
+    //         const container = document.querySelector('main');
+    //         // container.style.opacity = 1;
+    //         gsap.to(container, { opacity: 0, duration: 0.5, onComplete });
+    //         console.log('out', container);
+    //       },
+    //       in: (onComplete) => {
+    //         const container = document.querySelector('main');
+    //         container.style.opacity = 0;
+    //         gsap.to(container, { opacity: 1, duration: 0.5, onComplete });
+    //         console.log('in', container);
+    //       }
+    //     },
+    //   ]
+    // }),
     // new SwupParallelPlugin({ containers: ['main'], keep: 2 }),
     // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
@@ -129,3 +129,7 @@ const swup = new Swup({
 })
 
 window.swup = swup;
+
+swup.hooks.on('visit:start', (visit) => {
+  console.log('visit:start', visit.to.url);
+})
