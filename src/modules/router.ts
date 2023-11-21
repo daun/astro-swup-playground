@@ -24,7 +24,7 @@ const swup = new Swup({
   containers: ['header', 'main'],
   // animateHistoryBrowsing: true,
   plugins: [
-    new SwupA11yPlugin({ respectReducedMotion: true }),
+    new SwupA11yPlugin({ respectReducedMotion: true, autofocus: true }),
     // new SwupBodyClassPlugin(),
     new SwupDebugPlugin(),
     new SwupFormsPlugin(),
