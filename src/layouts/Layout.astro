@@ -1,4 +1,6 @@
 ---
+import { rand } from '../modules/util';
+
 export interface Props {
 	title: string;
 	classes?: string;
@@ -29,12 +31,16 @@ import '../styles/transitions.css';
 			<header>
 				<a href="/" class="text-gradient">Swup Test</a>
 			</header>
-			<div id="random" data-swup-morph="random">{Math.random()}</div>
 			<main id="swup" class="transition-slide-- transition-fade transition-main--">
 				<slot />
 			</main>
 			<footer>
-				Reached end of page. <a href="/">Return home</a>
+				<div>
+					End of page. <a href="/">Return home</a>
+				</div>
+				<div id="random" data-swup-morph="random">
+					{rand()}
+				</div>
 			</footer>
 		</div>
 	</body>

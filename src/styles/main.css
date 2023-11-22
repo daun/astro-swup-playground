@@ -34,6 +34,12 @@ html {
 
 .layout > footer {
   grid-area: footer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.layout > footer div + div {
+  opacity: 0.4;
 }
 
 main,
