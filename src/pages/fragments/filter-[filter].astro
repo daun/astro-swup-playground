@@ -1,90 +1,93 @@
 ---
 export function getStaticPaths() {
   return [
-    { params: { filter: '1' } },
-    { params: { filter: '2' } },
-    { params: { filter: '3' } },
+    { params: { filter: 'a-f' } },
+    { params: { filter: 'g-o' } },
+    { params: { filter: 'p-z' } },
   ];
 }
 
+import { rand } from '../../modules/util';
 import Layout from '../../layouts/Layout.astro';
 
 const names = [
-	'John Doe',
-	'Jane Smith',
-	'Michael Johnson',
-	'Emily Brown',
-	'William Lee',
-	'Olivia Williams',
-	'James Jones',
-	'Sophia Davis',
-	'Benjamin Miller',
-	'Isabella Wilson',
-	'Alexander Taylor',
-	'Madison Anderson',
-	'Ethan Thomas',
 	'Abigail Martinez',
-	'Daniel Robinson',
-	'Charlotte Hernandez',
-	'Matthew Gonzalez',
-	'Grace Perez',
-	'David Ramirez',
-	'Chloe Cooper',
-	'Joseph Peterson',
-	'Avery Morgan',
-	'Noah Turner',
-	'Lily Flores',
-	'Samuel Gray',
-	'Ella Price',
-	'Christopher Brooks',
-	'Aubrey Washington',
-	'Andrew Bell',
-	'Sofia Diaz',
-	'Logan Reed',
-	'Scarlett Stewart',
-	'Ryan Morris',
-	'Zoe Watson',
-	'Joshua Ross',
-	'Lillian Murphy',
-	'Nathan Powell',
-	'Hannah Cox',
 	'Aiden Perry',
-	'Victoria Long',
-	'Carter Jenkins',
+	'Alexander Taylor',
+	'Andrew Bell',
+	'Aubrey Washington',
+	'Avery Morgan',
+	'Benjamin Miller',
 	'Brooklyn Foster',
+	'Carter Jenkins',
+	'Charlotte Hernandez',
+	'Chloe Cooper',
+	'Christopher Brooks',
+	'Daniel Robinson',
+	'David Ramirez',
 	'Elijah Hayes',
-	'Peyton Rivera',
-	'Isaac Coleman',
-	'Leah Howard',
-	'Henry Ward',
+	'Ella Price',
+	'Emily Brown',
+	'Ethan Thomas',
+	'Grace Perez',
 	'Grace Richardson',
-	'Jonathan Griffin',
-	'Willow Brooks',
-	'Julian Reed',
+	'Hannah Cox',
 	'Harper Alexander',
+	'Henry Ward',
+	'Isaac Coleman',
+	'Isabella Wilson',
+	'James Jones',
+	'Jane Smith',
+	'John Doe',
+	'Jonathan Griffin',
+	'Joseph Peterson',
+	'Joshua Ross',
+	'Julian Reed',
+	'Leah Howard',
+	'Lillian Murphy',
+	'Lily Flores',
+	'Logan Reed',
+	'Madison Anderson',
+	'Matthew Gonzalez',
+	'Michael Johnson',
+	'Nathan Powell',
+	'Noah Turner',
+	'Olivia Williams',
+	'Peyton Rivera',
+	'Ryan Morris',
+	'Samuel Gray',
+	'Scarlett Stewart',
+	'Sofia Diaz',
+	'Sophia Davis',
+	'Victoria Long',
+	'William Lee',
+	'Willow Brooks',
+	'Zoe Watson',
 ];
 
 const { filter } = Astro.params;
 
-const filteredNames = names.filter((name, index) => {
-	return index % (Number(filter) + 2) === 0;
+const [first, last] = filter.split('-') || ['a', 'z'];
+const filteredNames = names.filter((name) => {
+	const initial = name[0].toLowerCase();
+	return initial >= first && initial <= last;
 });
 
 ---
 
 <Layout title="Fragments" classes="fragments">
 	<article>
-		<h1>Fragments: Filter {filter}</h1>
+		<h1>Fragments: {filter.toUpperCase()}</h1>
 		<p class="instructions">
 			Update dynamic fragments.
 		</p>
 
-		<div class="instructions">
-			<a href="/fragments/filter-1">Filter 1</a>  
-			<a href="/fragments/filter-2">Filter 2</a>  
-			<a href="/fragments/filter-3">Filter 3</a>  
-			<a href="/fragments">Reset</a>  
-			({Math.random()})
+		<div class="instructions filters">
+			<a href="/fragments">All</a>
+			<a href="/fragments/filter-a-f">A-F</a>
+			<a href="/fragments/filter-g-o">G-O</a>
+			<a href="/fragments/filter-p-z">P-Z</a>
+			<span>{rand()}</span>
 		</div>
 
 		<div id="names" class="instructions transition-filter">
@@ -94,3 +97,14 @@ const filteredNames = names.filter((name, index) => {
 	</article>
 
 </Layout>
+
+<style>
+	.filters {
+		display: flex;
+		gap: 1rem;
+	}
+	.filters span {
+		margin-left: auto;
+		opacity: 0.4;
+	}
+</style>
