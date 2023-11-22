@@ -23,7 +23,9 @@ import SwupOverlayTheme from '../packages/overlay-theme';
 
 const swup = new Swup({
   // native: true,
+  animationSelector: '[class*="page-transition-"]',
   containers: ['header', 'main'],
+  native: true,
   // animateHistoryBrowsing: true,
   plugins: [
     new SwupA11yPlugin({ respectReducedMotion: true, autofocus: true }),
@@ -35,7 +37,7 @@ const swup = new Swup({
         {
           from: '/fragments/:filter?',
           to: '/fragments/:filter?',
-          containers: ['#names']
+          containers: ['#fragments-content', '#fragments-heading']
         }
       ]
     }),

@@ -61,7 +61,7 @@ const names = [
 
 <Layout title="Fragments" classes="fragments">
 	<article>
-		<h1>Fragments</h1>
+		<h1 id="fragments-heading">Fragments</h1>
 		<p class="instructions">
 			Update dynamic fragments.
 		</p>
@@ -74,7 +74,7 @@ const names = [
 			<span>{rand()}</span>
 		</div>
 
-		<div id="names" class="instructions transition-filter">
+		<div id="fragments-content" class="instructions fragment-transition-filter">
 				{names.map((name) => (<div>{name}</div>))}
 		</div>
 

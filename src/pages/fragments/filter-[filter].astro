@@ -77,7 +77,7 @@ const filteredNames = names.filter((name) => {
 
 <Layout title="Fragments" classes="fragments">
 	<article>
-		<h1>Fragments: {filter.toUpperCase()}</h1>
+		<h1 id="fragments-heading">Fragments: {filter.toUpperCase()}</h1>
 		<p class="instructions">
 			Update dynamic fragments.
 		</p>
@@ -90,7 +90,7 @@ const filteredNames = names.filter((name) => {
 			<span>{rand()}</span>
 		</div>
 
-		<div id="names" class="instructions transition-filter">
+		<div id="fragments-content" class="instructions fragment-transition-filter">
 				{filteredNames.map((name) => (<div>{name}</div>))}
 		</div>
 
