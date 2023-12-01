@@ -35,13 +35,13 @@ html.is-animating .page-transition-fade,
   * ViewTransition: native
   */
 
-.page-transition-native {
+html.is-changing .page-transition-native {
   view-transition-name: main;
 }
 
 /* ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 0.75s;
+  animation-duration: 0s;
 } */
 
 ::view-transition-old(main) {
@@ -49,27 +49,27 @@ html.is-animating .page-transition-fade,
 }
 
 ::view-transition-new(main) {
-  animation: 0.3s 0.3s ease-in-out both move-in;
+  animation: 0.3s ease-in-out both move-in;
 }
 
 @keyframes move-out {
   from {
-    /* transform: translateX(0%) translateY(0%); */
+    transform: translateX(0%) translateY(0%);
     opacity: 1;
   }
   to {
-    /* transform: translateX(-100%) translateY(20vh); */
+    transform: translateX(-100%) translateY(20vh);
     opacity: 0;
   }
 }
 
 @keyframes move-in {
   from {
-    /* transform: translateX(100%) translateY(-20vh); */
+    transform: translateX(100%) translateY(-20vh);
     opacity: 0;
   }
   to {
-    /* transform: translateX(0%) translateY(0%); */
+    transform: translateX(0%) translateY(0%);
     opacity: 1;
   }
 }
@@ -97,15 +97,33 @@ html.is-animating .page-transition-fade,
   */
 
 .fragment-transition-filter.is-changing {
+  view-transition-name: fragment-filter;
+}
+
+.fragment-transition-heading.is-changing {
+  view-transition-name: fragment-heading;
+}
+
+::view-transition-old(fragment-filter),
+::view-transition-old(fragment-heading) {
+  animation: 0.3s ease-in-out both move-out;
+}
+
+::view-transition-new(fragment-filter),
+::view-transition-new(fragment-heading) {
+  animation: 0.3s ease-in-out both move-in;
+}
+
+.swup-not-native .fragment-transition-filter.is-changing {
   transition: opacity .3s ease-in-out, transform .3s ease-in-out;
 }
 
-.fragment-transition-filter.is-animating {
+.swup-not-native .fragment-transition-filter.is-animating {
   opacity: 0;
 }
 
-.fragment-transition-filter.is-next-container,
-.fragment-transition-filter.is-previous-container {
+.swup-not-native .fragment-transition-filter.is-next-container,
+.swup-not-native .fragment-transition-filter.is-previous-container {
   opacity: 0;
 }
 
