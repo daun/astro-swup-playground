@@ -8,9 +8,20 @@ import Layout from '../layouts/Layout.astro';
 		<p class="instructions">
 			Check how swup focuses containers and autofocus elements.
 		</p>
-		<form>
-			<input type="text" name="search" placeholder="Autofocused input" autofocus>
-		</form>
+		<div class="instructions">
+			<form>
+				<input type="text" name="search" placeholder="Autofocused input" autofocus>
+			</form>
+		</div>
 	</article>
 
 </Layout>
+
+<style>
+	form {
+		display: block;
+	}
+	input {
+		width: 100%;
+	}
+	</style>

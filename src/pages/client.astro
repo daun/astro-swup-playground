@@ -9,28 +9,33 @@ import TestComponent from '../components/Test.svelte';
 		<p class="instructions">
 			Expecting an interactive clock and a clickable counter button.
 		</p>
+		<div class="instructions">
+			<TestComponent client:visible />
+		</div>
+		<div class="instructions">
+			<astro-heart>
+				<button aria-label="Heart">💜</button> × <span>0</span>
+			</astro-heart>
+		</div>
 	</article>
-
-	<TestComponent client:visible />
-
-	<astro-heart>
-		<button aria-label="Heart">💜</button> × <span>0</span>
-	</astro-heart>
 
 	<script>
 		customElements.define('astro-heart', class extends HTMLElement {
+			count = 0;
 			constructor() {
 				super();
-				let count = 0;
-
-				const heartButton = this.querySelector('button');
-				const countSpan = this.querySelector('span');
-
-				// Each time the button is clicked, update the count.
-				heartButton.addEventListener('click', () => {
-					count++;
-					countSpan.textContent = count;
+				this.button = this.querySelector('button');
+				this.label = this.querySelector('span');
+				this.button.addEventListener('click', () => {
+					this.increase();
+					this.update();
 				});
+			}
+			increase() {
+				this.count++;
+			}
+			update() {
+				this.label.textContent = this.count;
 			}
 		});
 	</script>

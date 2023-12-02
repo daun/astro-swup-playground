@@ -81,7 +81,6 @@ const filteredNames = names.filter((name) => {
 		<p class="instructions">
 			Update dynamic fragments.
 		</p>
-
 		<div class="instructions filters">
 			<a href="/fragments">All</a>
 			<a href="/fragments/filter-a-f">A-F</a>
@@ -89,13 +88,10 @@ const filteredNames = names.filter((name) => {
 			<a href="/fragments/filter-p-z">P-Z</a>
 			<span>{rand()}</span>
 		</div>
-
 		<div id="fragments-content" class="instructions fragment-transition-filter">
 				{filteredNames.map((name) => (<div>{name}</div>))}
 		</div>
-
 	</article>
-
 </Layout>
 
 <style>
