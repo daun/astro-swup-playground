@@ -103,7 +103,7 @@ const swup = new Swup({
     //   ]
     // }),
     // new SwupParallelPlugin({ containers: ['main'], keep: 2 }),
-    // new SwupProgressPlugin(),
+    new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
     //   routes: [
     //     { name: 'home', path: '/' },
