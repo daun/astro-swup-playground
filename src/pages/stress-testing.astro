@@ -5,16 +5,16 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Stress testing" classes="stress-testing">
 	<article>
 		<h1>Stress testing</h1>
-		<p class="instructions">
+		<p class="section">
 			Testing swup behavior on rapid clicks and consecutive visits.
 		</p>
 		<h2>Double clicks</h2>
-		<p class="instructions">
+		<p class="section">
 			<a href="/">Double-click this link</a> and check the debug output for triggered hooks.
 			There should only be a single visit that happened.
 		</p>
 		<h2>Rapid navigation</h2>
-		<p class="instructions">
+		<p class="section">
 			Trigger automated rapid navigations. There should be no flickering and no hooks called
 			for aborted visits. You should land back at this page, with various intermediate stops.
 			<br><br>

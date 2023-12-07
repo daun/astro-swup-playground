@@ -6,10 +6,10 @@ import Card from '../components/Card.astro';
 <Layout title="History" classes="history">
 	<article>
 		<h1>History</h1>
-		<p class="instructions">
+		<p class="section">
 			Testing how swup influences the history stack.
 		</p>
-		<ul role="list" class="link-card-grid">
+		<ul role="list" class="card-grid">
 			<Card href="/" history="push" title="Push" body="Create a new history entry" />
 			<Card href="/" history="replace" title="Replace" body="Replace the current history entry" />
 		</ul>

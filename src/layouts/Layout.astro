@@ -16,6 +16,8 @@ import '../styles/main.css';
 import '../styles/transitions.css';
 import logo from '../assets/swup-logo-icon.svg';
 
+const fullTitle = [title, 'swup playground'].filter(Boolean).join(' — ');
+
 ---
 
 <!DOCTYPE html>
@@ -26,7 +28,7 @@ import logo from '../assets/swup-logo-icon.svg';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{fullTitle}</title>
 		<script src="/src/modules/router"></script>
 		<slot name="head"/>
 	</head>
