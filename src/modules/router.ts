@@ -137,6 +137,13 @@ swup.hooks.on('visit:start', (visit) => {
   console.log('visit:start', '----------------------------');
 })
 
+swup.hooks.on('visit:start', (visit) => {
+  if (visit.to.url === '/stress-testing') {
+    console.log('manually aborting visit', visit.to.url );
+    // setTimeout(() => visit.abort(), 5);
+  }
+})
+
 window.addEventListener('swup:any', ({ detail: { hook, visit, args }}) => {
   const normal = 'color: black; font-weight: normal;';
   const bold = 'color: black; font-weight: bold;';
@@ -152,3 +159,12 @@ window.addEventListener('swup:any', ({ detail: { hook, visit, args }}) => {
     name[1], url[1], status[1], ...params
   );
 })
+
+// swup.hooks.replace('fetch:request', function(visit, { url, options }) {
+//   const controller = new AbortController();
+//   const { signal } = controller;
+//   setTimeout(() => {
+//     controller.abort();
+//   }, 5)
+//   return fetch(url, { ...options, signal });
+// });

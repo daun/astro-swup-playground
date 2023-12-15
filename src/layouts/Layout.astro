@@ -55,14 +55,16 @@ const fullTitle = [title, 'swup playground'].filter(Boolean).join(' — ');
 						page-transition-parallel-slide
 						view-transition-main
 				-->
-				<main id="swup" class="layout__page page-transition-native">
+				<main id="swup" class="layout__page page-transition-fade">
 					<slot />
 				</main>
 			</div>
 			<footer class="layout__footer">
 				<div class="footer">
 					<div>
-						End of page. <a href="/">Return home</a>
+						<span>End of page</span>
+						<a href="/">Home</a>
+						<a href="#top">Top</a>
 					</div>
 					<div id="random" data-swup-morph="random">
 						{rand()}
