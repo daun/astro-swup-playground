@@ -166,6 +166,12 @@ main:focus {
   margin: 0 auto;
 }
 
+.footer > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
 .site-title {
   display: flex;
   align-items: center;
@@ -202,9 +208,15 @@ a {
 }
 
 h1 {
-  font-size: var(--font-size-fluid-2);
-  font-weight: 800;
+  font-size: var(--font-size-fluid-3);
+  font-weight: bold;
   margin: 0;
+}
+
+h2 {
+  font-size: var(--font-size-fluid-1);
+  font-weight: bold;
+  /* margin: 0; */
 }
 
 video {
