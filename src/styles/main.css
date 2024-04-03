@@ -121,6 +121,8 @@ body {
 .layout__page {
   width: 100%;
   max-width: var(--max-content-width);
+  grid-row: 1;
+  grid-column: 1;
 }
 
 .layout__footer {

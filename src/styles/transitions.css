@@ -8,12 +8,12 @@ html.is-changing .page-transition-parallel-slide {
 
 .page-transition-parallel-slide.is-next-container {
   transform: translateX(100%);
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 .page-transition-parallel-slide.is-previous-container {
   transform: translateX(-100%);
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 

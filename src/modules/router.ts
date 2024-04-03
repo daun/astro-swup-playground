@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 
-// import Swup from 'swup';
-import Swup from '../packages/swup';
+import Swup from 'swup';
+// import Swup from '../packages/swup';
 
 import SwupA11yPlugin from '../packages/a11y-plugin';
 import SwupBodyClassPlugin from '../packages/body-class-plugin';
@@ -25,11 +25,33 @@ const swup = new Swup({
   // native: true,
   animationSelector: '[class*="page-transition-"]',
   containers: ['header', 'main'],
-  native: true,
+  // native: true,
   // animateHistoryBrowsing: true,
   plugins: [
-    new SwupA11yPlugin({ respectReducedMotion: true, autofocus: true }),
-    // new SwupBodyClassPlugin(),
+    new SwupA11yPlugin({
+      contentSelector: 'body',
+      respectReducedMotion: true,
+      autofocus: true,
+      announcements: {
+        'en-US': {
+          visit: 'Navigated to: {title}',
+          url: 'New page at {url}'
+        },
+        'de-DE': {
+          visit: 'Navigiert zu: {title}',
+          url: 'Neue Seite unter {url}'
+        },
+        'fr-FR': {
+          visit: 'Navigué vers : {title}',
+          url: 'Nouvelle page à {url}'
+        },
+        '*': {
+          visit: '{title}',
+          url: '{url}'
+        }
+      }
+    }),
+    new SwupBodyClassPlugin(),
     // new SwupDebugPlugin(),
     new SwupFormsPlugin(),
     new SwupFragmentPlugin({
@@ -37,7 +59,7 @@ const swup = new Swup({
         {
           from: '/fragments/:filter?',
           to: '/fragments/:filter?',
-          containers: ['#fragments-content', '#fragments-heading']
+          containers: ['#fragments-content', '#fragments-nav', '#fragments-heading']
         }
       ]
     }),
@@ -103,7 +125,7 @@ const swup = new Swup({
     //   ]
     // }),
     // new SwupParallelPlugin({ containers: ['main'], keep: 2 }),
-    new SwupProgressPlugin(),
+    // new SwupProgressPlugin(),
     // new SwupRouteNamePlugin({
     //   routes: [
     //     { name: 'home', path: '/' },
@@ -124,7 +146,7 @@ const swup = new Swup({
     //   offset: 30,
     //   markScrollTarget: true
     // }),
-    // new SwupMorphPlugin({ containers: ['#randoms'] }),
+    new SwupMorphPlugin({ containers: ['#randoms'] }),
     // new SwupFadeTheme(),
     // new SwupSlideTheme({ reversed: false }),
     // new SwupOverlayTheme({ color: '#000', duration: 500, direction: 'to-top' }),

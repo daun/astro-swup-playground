@@ -65,13 +65,13 @@ const names = [
 		<p class="section">
 			Update dynamic fragments.
 		</p>
-		<div class="instructions filters">
-			<a href="/fragments">All</a>
-			<a href="/fragments/filter-a-f">A-F</a>
-			<a href="/fragments/filter-g-o">G-O</a>
-			<a href="/fragments/filter-p-z">P-Z</a>
+		<nav id="fragments-nav" class="instructions filters" aria-label="Index by initials">
+			<a href="/fragments" aria-current="page">All</a>
+			<a href="/fragments/filter-a-f" aria-current="false">A-F</a>
+			<a href="/fragments/filter-g-o" aria-current="false">G-O</a>
+			<a href="/fragments/filter-p-z" aria-current="false">P-Z</a>
 			<span>{rand()}</span>
-		</div>
+		</nav>
 		<div id="fragments-content" class="instructions fragment-transition-filter">
 				{names.map((name) => (<div>{name}</div>))}
 		</div>

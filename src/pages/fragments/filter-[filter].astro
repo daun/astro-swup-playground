@@ -81,13 +81,13 @@ const filteredNames = names.filter((name) => {
 		<p class="section">
 			Update dynamic fragments.
 		</p>
-		<div class="instructions filters">
+		<nav id="fragments-nav" class="instructions filters" aria-label="Index by initials">
 			<a href="/fragments">All</a>
-			<a href="/fragments/filter-a-f">A-F</a>
-			<a href="/fragments/filter-g-o">G-O</a>
-			<a href="/fragments/filter-p-z">P-Z</a>
+			<a href="/fragments/filter-a-f" aria-current={filter === 'a-f' ? 'page' : 'false'}>A-F</a>
+			<a href="/fragments/filter-g-o" aria-current={filter === 'g-o' ? 'page' : 'false'}>G-O</a>
+			<a href="/fragments/filter-p-z" aria-current={filter === 'p-z' ? 'page' : 'false'}>P-Z</a>
 			<span>{rand()}</span>
-		</div>
+		</nav>
 		<div id="fragments-content" class="instructions fragment-transition-filter">
 				{filteredNames.map((name) => (<div>{name}</div>))}
 		</div>
