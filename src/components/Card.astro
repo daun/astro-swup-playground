@@ -10,16 +10,16 @@ const { href, title, body, history = '' } = Astro.props;
 ---
 
 <article class="link-card card">
-	<h2>
+	<header>
 		<a href={href} data-swup-history={history}>
 			{title}
 		</a>
-		<span>&rarr;</span>
-	</h2>
+		<span aria-hidden="true">&rarr;</span>
+	</header>
 	<p>
 		{body}
 	</p>
-	<a href={href} data-swup-history={history}>{title}</a>
+	<a href={href} data-swup-history={history} aria-hidden="true" tabindex="-1">{title}</a>
 </article>
 <style>
 	h2 {
