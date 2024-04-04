@@ -33,17 +33,21 @@ const swup = new Swup({
       respectReducedMotion: true,
       autofocus: true,
       announcements: {
-        'en-US': {
+        'en': {
           visit: 'Navigated to: {title}',
           url: 'New page at {url}'
         },
-        'de-DE': {
+        'de': {
           visit: 'Navigiert zu: {title}',
           url: 'Neue Seite unter {url}'
         },
-        'fr-FR': {
+        'fr': {
           visit: 'Navigué vers : {title}',
           url: 'Nouvelle page à {url}'
+        },
+        'es': {
+          visit: '{title} ha cargado',
+          url: 'Nuevo página en {url}'
         },
         '*': {
           visit: '{title}',

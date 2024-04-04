@@ -20,12 +20,12 @@ const locale = lang?.toUpperCase()
 	<article>
 		<h1>Language: {locale}</h1>
 		<p class="section">
-			Checking {locale} announcements with A11y Plugin.
+			Checking <strong>{locale}</strong> announcements with A11y Plugin. <a href="/lang">Return</a>
 		</p>
 		<ul role="list" class="card-grid">
-			<Card href="/lang/fr" title="French" body="" />
-			<Card href="/lang/es" title="Spanish" body="" />
-			<Card href="/lang/it" title="Italian" body="" />
+			<Card href="/lang/fr" title="French" body="Navigué vers : {title}" />
+			<Card href="/lang/es" title="Spanish" body="{title} ha cargado" />
+			<Card href="/lang/it" title="Italian" body="(No translation defined)" />
 		</ul>
 		<p class="section">
 			Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
