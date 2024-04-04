@@ -6,20 +6,26 @@ export interface Props {
 	history?: string;
 }
 
-const { href, title, body, history = '' } = Astro.props;
+const { href, title, body = '', history = '' } = Astro.props;
 ---
 
 <article class="link-card card">
 	<header>
-		<a href={href} data-swup-history={history}>
-			{title}
-		</a>
+		<slot name="link">
+			<a href={href} data-swup-history={history}>
+				{title}
+			</a>
+		</slot>
 		<span aria-hidden="true">&rarr;</span>
 	</header>
 	<p>
 		{body}
 	</p>
-	<a href={href} data-swup-history={history} aria-hidden="true" tabindex="-1">{title}</a>
+	<div class="cover-link">
+		<slot name="cover">
+			<a href={href} data-swup-history={history} aria-hidden="true" tabindex="-1">{title}</a>
+		</slot>
+	</div>
 </article>
 <style>
 	h2 {

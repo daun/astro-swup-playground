@@ -19,20 +19,26 @@ import Card from '../components/Card.astro';
 			for aborted visits.<br>
 			You should land back at this page, with various intermediate stops.
 		</p>
-		<!-- <ul role="list" class="card-grid">
-			<Card href="/" title="Abort during out-phase" body="" />
-			<Card href="/" title="Abort during in-phase" body="" />
+		<ul role="list" class="card-grid">
+			<Card href="/" title="Abort during out-phase" body="Single delayed transition">
+				<rapid-navigation-trigger slot="link" phase="out" label="Abort during out-phase" urls="/, /history"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="out" label="Abort during out-phase" urls="/, /history"></rapid-navigation-trigger>
+			</Card>
+			<Card href="/" title="Abort during in-phase" body="Multiple completed transitions">
+				<rapid-navigation-trigger slot="link" phase="in" label="Abort during in-phase" urls="/, /history"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="in" label="Abort during in-phase" urls="/, /history"></rapid-navigation-trigger>
+			</Card>
 		</ul>
 		<ul role="list" class="card-grid">
-			<Card href="/" title="Abort consecutive visits" body="" />
-			<Card href="/" title="Abort fragments" body="" />
-		</ul> -->
-		<p class="section">
-			<rapid-navigation-trigger phase="out" label="Abort during out-phase" urls="/, /history"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="in" label="Abort during in-phase" urls="/, /history"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="out" label="Abort consecutive visits" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="out" label="Abort fragments" urls="/fragments, /fragments/filter-a-f, /fragments/filter-g-o, /fragments/filter-p-z"></rapid-navigation-trigger><br>
-		</p>
+			<Card href="/" title="Abort consecutive visits" body="Single delayed transition">
+				<rapid-navigation-trigger slot="link" phase="out" label="Abort consecutive visits" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="out" label="Abort consecutive visits" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger>
+			</Card>
+			<Card href="/" title="Abort fragments" body="Multiple completed transitions">
+				<rapid-navigation-trigger slot="link" phase="in" label="Abort fragments" urls="/fragments, /fragments/filter-a-f, /fragments/filter-g-o, /fragments/filter-p-z"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="in" label="Abort fragments" urls="/fragments, /fragments/filter-a-f, /fragments/filter-g-o, /fragments/filter-p-z"></rapid-navigation-trigger>
+			</Card>
+		</ul>
 	</article>
 
 	<script>
@@ -69,7 +75,6 @@ import Card from '../components/Card.astro';
 				}
 			}
 			navigate(url) {
-				// console.log(`Navigating to ${url}`);
 				window.swup.navigate(url);
 			}
 			waitForHook(hook) {
