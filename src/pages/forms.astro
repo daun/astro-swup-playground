@@ -11,30 +11,38 @@ import Layout from '../layouts/Layout.astro';
 		<div class="card-grid">
 			<div class="card">
 				<h2>GET</h2>
-				<form action="/forms" data-swup-form>
+				<form data-swup-form action="/forms" class="form">
 					<input type="text" name="first" placeholder="First name">
 					<input type="text" name="last" placeholder="Last name">
 					<select name="age">
+						<option value="">Age</option>
 						<option value="20">20-25</option>
 						<option value="25">25-35</option>
 						<option value="35">35-60</option>
 					</select>
-					<textarea name="message"></textarea>
-					<button type="submit">Submit</button>
+					<textarea name="message" placeholder="Message"></textarea>
+					<button type="submit">
+						Submit
+						<span aria-hidden="true">→</span>
+					</button>
 				</form>
 			</div>
 			<div class="card">
 				<h2>POST</h2>
-				<form action="/forms" method="post" data-swup-form>
+				<form data-swup-form action="/forms" method="post" class="form">
 					<input type="text" name="first" placeholder="First name">
 					<input type="text" name="last" placeholder="Last name">
 					<select name="age">
+						<option value="">Age</option>
 						<option value="20">20-25</option>
 						<option value="25">25-35</option>
 						<option value="35">35-60</option>
 					</select>
-					<textarea name="message"></textarea>
-					<button type="submit">Submit</button>
+					<textarea name="message" placeholder="Message"></textarea>
+					<button type="submit">
+						Submit
+						<span aria-hidden="true">→</span>
+					</button>
 				</form>
 			</div>
 		</div>
@@ -42,16 +50,5 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-form {
-	display: block;
-}
-input {
-	width: 100%;
-}
-textarea {
-	width: 100%;
-}
-select {
-	width: 100%;
-}
+
 </style>
