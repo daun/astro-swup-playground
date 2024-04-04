@@ -280,6 +280,14 @@ code {
   padding: 0;
 }
 
+.card-stack {
+  display: grid;
+  gap: var(--gap);
+  margin-left: calc(-0.5 * var(--gap));
+  margin-right: calc(-0.5 * var(--gap));
+  padding: 0;
+}
+
 .card {
   --card-padding: 1rem var(--gap-small);
   position: relative;

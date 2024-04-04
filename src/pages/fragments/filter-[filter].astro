@@ -81,15 +81,19 @@ const filteredNames = names.filter((name) => {
 		<p class="section">
 			Update dynamic fragments.
 		</p>
-		<nav id="fragments-nav" class="instructions filters" aria-label="Index by initials">
-			<a href="/fragments">All</a>
-			<a href="/fragments/filter-a-f" aria-current={filter === 'a-f' ? 'page' : 'false'}>A-F</a>
-			<a href="/fragments/filter-g-o" aria-current={filter === 'g-o' ? 'page' : 'false'}>G-O</a>
-			<a href="/fragments/filter-p-z" aria-current={filter === 'p-z' ? 'page' : 'false'}>P-Z</a>
-			<span>{rand()}</span>
-		</nav>
-		<div id="fragments-content" class="instructions fragment-transition-filter">
-				{filteredNames.map((name) => (<div>{name}</div>))}
+		<div class="card-stack">
+			<div class="card">
+				<nav id="fragments-nav" class="filters" aria-label="Index by initials">
+					<a href="/fragments">All</a>
+					<a href="/fragments/filter-a-f" aria-current={filter === 'a-f' ? 'page' : 'false'}>A-F</a>
+					<a href="/fragments/filter-g-o" aria-current={filter === 'g-o' ? 'page' : 'false'}>G-O</a>
+					<a href="/fragments/filter-p-z" aria-current={filter === 'p-z' ? 'page' : 'false'}>P-Z</a>
+					<span>{rand()}</span>
+				</nav>
+			</div>
+			<div id="fragments-content" class="card fragment-transition-filter">
+					{filteredNames.map((name) => (<div>{name}</div>))}
+			</div>
 		</div>
 	</article>
 </Layout>
@@ -98,6 +102,14 @@ const filteredNames = names.filter((name) => {
 	.filters {
 		display: flex;
 		gap: 1rem;
+	}
+	.filters a {
+		color: var(--color-dimmed);
+		text-decoration: none;
+	}
+	.filters a[aria-current="page"] {
+		color: var(--color);
+		font-weight: bold;
 	}
 	.filters span {
 		margin-left: auto;
