@@ -5,51 +5,50 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Forms: inline" classes="forms">
 	<article>
 		<h1>Forms: inline</h1>
-		<p class="instructions">
+		<p class="section">
 			Testing inline form submissions.
 		</p>
-		<h2>GET</h2>
-		<div class="instructions">
-			<form data-swup-form data-swup-inline-form id="form-inline-get" action="/forms-inline" class="transition-fade">
-				<input type="text" name="first" placeholder="First name">
-				<input type="text" name="last" placeholder="Last name">
-				<select name="age">
-					<option value="20">20-25</option>
-					<option value="25">25-35</option>
-					<option value="35">35-60</option>
-				</select>
-				<textarea name="message"></textarea>
-				<button type="submit">Submit</button>
-			</form>
-		</div>
-		<h2>POST</h2>
-		<div class="instructions">
-			<form data-swup-form data-swup-inline-form id="form-inline-post" action="/forms-inline" method="post" class="transition-fade">
-				<input type="text" name="first" placeholder="First name">
-				<input type="text" name="last" placeholder="Last name">
-				<select name="age">
-					<option value="20">20-25</option>
-					<option value="25">25-35</option>
-					<option value="35">35-60</option>
-				</select>
-				<textarea name="message"></textarea>
-				<button type="submit">Submit</button>
-			</form>
+		<div class="card-grid">
+			<div class="card">
+				<h2>GET</h2>
+				<form data-swup-form data-swup-inline-form id="form-inline-get" action="/forms-inline" class="form transition-fade">
+					<input type="text" name="first" placeholder="First name">
+					<input type="text" name="last" placeholder="Last name">
+					<select name="age">
+						<option value="">Age</option>
+						<option value="20">20-25</option>
+						<option value="25">25-35</option>
+						<option value="35">35-60</option>
+					</select>
+					<textarea name="message" placeholder="Message"></textarea>
+					<button type="submit">
+						Submit
+						<span aria-hidden="true">→</span>
+					</button>
+				</form>
+			</div>
+			<div class="card">
+				<h2>POST</h2>
+				<form data-swup-form data-swup-inline-form id="form-inline-post" action="/forms-inline" method="post" class="form transition-fade">
+					<input type="text" name="first" placeholder="First name">
+					<input type="text" name="last" placeholder="Last name">
+					<select name="age">
+						<option value="">Age</option>
+						<option value="20">20-25</option>
+						<option value="25">25-35</option>
+						<option value="35">35-60</option>
+					</select>
+					<textarea name="message" placeholder="Message"></textarea>
+					<button type="submit">
+						Submit
+						<span aria-hidden="true">→</span>
+					</button>
+				</form>
+			</div>
 		</div>
 	</article>
 </Layout>
 
 <style>
-form {
-	display: block;
-}
-input {
-	width: 100%;
-}
-textarea {
-	width: 100%;
-}
-select {
-	width: 100%;
-}
+
 </style>

@@ -5,51 +5,50 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Forms" classes="forms">
 	<article>
 		<h1>Forms</h1>
-		<p class="instructions">
+		<p class="section">
 			Testing form submissions.
 		</p>
-		<h2>GET</h2>
-		<div class="instructions">
-			<form action="/forms" data-swup-form>
-				<input type="text" name="first" placeholder="First name">
-				<input type="text" name="last" placeholder="Last name">
-				<select name="age">
-					<option value="20">20-25</option>
-					<option value="25">25-35</option>
-					<option value="35">35-60</option>
-				</select>
-				<textarea name="message"></textarea>
-				<button type="submit">Submit</button>
-			</form>
-		</div>
-		<h2>POST</h2>
-		<div class="instructions">
-			<form action="/forms" method="post" data-swup-form>
-				<input type="text" name="first" placeholder="First name">
-				<input type="text" name="last" placeholder="Last name">
-				<select name="age">
-					<option value="20">20-25</option>
-					<option value="25">25-35</option>
-					<option value="35">35-60</option>
-				</select>
-				<textarea name="message"></textarea>
-				<button type="submit">Submit</button>
-			</form>
+		<div class="card-grid">
+			<div class="card">
+				<h2>GET</h2>
+				<form data-swup-form action="/forms" class="form">
+					<input type="text" name="first" placeholder="First name">
+					<input type="text" name="last" placeholder="Last name">
+					<select name="age">
+						<option value="">Age</option>
+						<option value="20">20-25</option>
+						<option value="25">25-35</option>
+						<option value="35">35-60</option>
+					</select>
+					<textarea name="message" placeholder="Message"></textarea>
+					<button type="submit">
+						Submit
+						<span aria-hidden="true">→</span>
+					</button>
+				</form>
+			</div>
+			<div class="card">
+				<h2>POST</h2>
+				<form data-swup-form action="/forms" method="post" class="form">
+					<input type="text" name="first" placeholder="First name">
+					<input type="text" name="last" placeholder="Last name">
+					<select name="age">
+						<option value="">Age</option>
+						<option value="20">20-25</option>
+						<option value="25">25-35</option>
+						<option value="35">35-60</option>
+					</select>
+					<textarea name="message" placeholder="Message"></textarea>
+					<button type="submit">
+						Submit
+						<span aria-hidden="true">→</span>
+					</button>
+				</form>
+			</div>
 		</div>
 	</article>
 </Layout>
 
 <style>
-form {
-	display: block;
-}
-input {
-	width: 100%;
-}
-textarea {
-	width: 100%;
-}
-select {
-	width: 100%;
-}
+
 </style>

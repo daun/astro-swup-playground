@@ -1,29 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
 ---
 
 <Layout title="Stress testing" classes="stress-testing">
 	<article>
 		<h1>Stress testing</h1>
-		<p class="instructions">
+		<p class="section">
 			Testing swup behavior on rapid clicks and consecutive visits.
 		</p>
 		<h2>Double clicks</h2>
-		<p class="instructions">
-			<a href="/">Double-click this link</a> and check the debug output for triggered hooks.
-			There should only be a single visit that happened.
-		</p>
+		<ul role="list" class="card-grid">
+			<Card href="/" title="Double-click this link" body="Check the debug output for triggered hooks: there should only be a single visit that happened." />
+		</ul>
 		<h2>Rapid navigation</h2>
-		<p class="instructions">
+		<p class="section">
 			Trigger automated rapid navigations. There should be no flickering and no hooks called
-			for aborted visits. You should land back at this page, with various intermediate stops.
-			<br><br>
-
-			<rapid-navigation-trigger phase="out" label="Abort during out-phase" urls="/, /history"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="in" label="Abort during in-phase" urls="/, /history"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="out" label="Abort consecutive visits" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger><br>
-			<rapid-navigation-trigger phase="out" label="Abort fragments" urls="/fragments, /fragments/filter-a-f, /fragments/filter-g-o, /fragments/filter-p-z"></rapid-navigation-trigger><br>
+			for aborted visits.<br>
+			You should land back at this page, with various intermediate stops.
 		</p>
+		<ul role="list" class="card-grid">
+			<Card href="/" title="Abort during out-phase" body="Single delayed transition">
+				<rapid-navigation-trigger slot="link" phase="out" label="Abort during out-phase" urls="/, /history"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="out" label="Abort during out-phase" urls="/, /history"></rapid-navigation-trigger>
+			</Card>
+			<Card href="/" title="Abort during in-phase" body="Multiple completed transitions">
+				<rapid-navigation-trigger slot="link" phase="in" label="Abort during in-phase" urls="/, /history"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="in" label="Abort during in-phase" urls="/, /history"></rapid-navigation-trigger>
+			</Card>
+		</ul>
+		<ul role="list" class="card-grid">
+			<Card href="/" title="Abort consecutive visits" body="Single delayed transition">
+				<rapid-navigation-trigger slot="link" phase="out" label="Abort consecutive visits" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="out" label="Abort consecutive visits" urls="/, /history, /lang, /scrolling"></rapid-navigation-trigger>
+			</Card>
+			<Card href="/" title="Abort fragments" body="Multiple completed transitions">
+				<rapid-navigation-trigger slot="link" phase="in" label="Abort fragments" urls="/fragments, /fragments/filter-a-f, /fragments/filter-g-o, /fragments/filter-p-z"></rapid-navigation-trigger>
+				<rapid-navigation-trigger slot="cover" phase="in" label="Abort fragments" urls="/fragments, /fragments/filter-a-f, /fragments/filter-g-o, /fragments/filter-p-z"></rapid-navigation-trigger>
+			</Card>
+		</ul>
 	</article>
 
 	<script>
@@ -60,7 +75,6 @@ import Layout from '../layouts/Layout.astro';
 				}
 			}
 			navigate(url) {
-				// console.log(`Navigating to ${url}`);
 				window.swup.navigate(url);
 			}
 			waitForHook(hook) {

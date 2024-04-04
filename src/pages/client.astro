@@ -6,16 +6,18 @@ import TestComponent from '../components/Test.svelte';
 <Layout title="Client" classes="client">
 	<article>
 		<h1>Client</h1>
-		<p class="instructions">
+		<p class="section">
 			Expecting an interactive clock and a clickable counter button.
 		</p>
-		<div class="instructions">
-			<TestComponent client:visible />
-		</div>
-		<div class="instructions">
-			<astro-heart>
-				<button aria-label="Heart">💜</button> × <span>0</span>
-			</astro-heart>
+		<div class="card-grid">
+			<div class="card">
+				<TestComponent client:visible />
+			</div>
+			<div class="card">
+				<astro-heart>
+					<button aria-label="Heart">💜</button> × <span>0</span>
+				</astro-heart>
+			</div>
 		</div>
 	</article>
 
