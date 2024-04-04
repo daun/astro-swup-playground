@@ -2,6 +2,8 @@
 
 Playground for testing and prototyping [swup](https://swup.js.org) features and plugins.
 
+![Swup Playground Screenshot](./assets/screenshot.png)
+
 ## Testing swup features and plugins
 
 - Swup is initialised in `src/modules/router.ts`.
@@ -14,7 +16,7 @@ import it instead of the official package. For more realistic tests, use
 [yalc](https://github.com/wclr/yalc/) and import as usual from the package.
 
 ```sh
-cp ./preload-plugin/dist/index.module.js ./astro/src/packages/preload-plugin.js
+cp ./preload-plugin/dist/index.module.js ./astro-swup-playground/src/packages/preload-plugin.js
 ```
 
 ```js
