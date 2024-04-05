@@ -247,7 +247,7 @@ const swup = new Swup({
 		FormsPlugin,
 		FragmentPlugin,
 		HeadPlugin,
-		JSPlugin,
+		// JSPlugin,
 		// ParallelPlugin,
 		// ProgressPlugin,
 		// RouteNamePlugin,
