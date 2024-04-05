@@ -6,7 +6,7 @@
   --swup-blue: hsl(239, 50%, 30%);
   --swup-red: hsl(354, 99%, 68%);
   --swup-green: hsl(172, 65%, 62%);
-  --font-system: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  --font-system: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --font-mono: Dank Mono, Operator Mono, Inconsolata, Fira Mono, ui-monospace, SF Mono, Monaco, Droid Sans Mono, Source Code Pro, monospace;
   --font-size-fluid-0: max(1rem, min(2vw, 1.15rem));
   --font-size-fluid-1: max(1.15rem, min(3vw, 1.35rem));
@@ -101,7 +101,7 @@ body {
   z-index: 4;
 }
 
-.layout > * {
+.layout>* {
   min-width: 0;
 }
 
@@ -161,7 +161,7 @@ body {
   text-underline-offset: 0.3em;
 } */
 
-.layout__footer div + div {
+.layout__footer div+div {
   opacity: 0.5;
   margin-left: auto;
 }
@@ -185,7 +185,7 @@ nav a {
   margin: 0 auto;
 }
 
-.footer > div:first-child {
+.footer>div:first-child {
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -218,7 +218,7 @@ nav a {
   align-items: center;
   color: var(--color-transparent-3);
   position: relative;
-  transition: opacity .3s,transform .4s;
+  transition: opacity .3s, transform .4s;
 }
 
 a {
@@ -245,8 +245,8 @@ h3 {
 }
 
 video {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: auto;
   border-radius: 0.4rem;
 }
 
@@ -288,8 +288,8 @@ code {
   margin-bottom: 2rem;
 }
 
-.card-grid + .card-grid,
-.card-stack + .card-stack {
+.card-grid+.card-grid,
+.card-stack+.card-stack {
   margin-top: -1rem;
 }
 
@@ -322,7 +322,7 @@ code {
   transition: all 0.3s ease-in-out;
 }
 
-.card > a,
+.card>a,
 .card .cover-link a {
   position: absolute;
   top: 0;
@@ -334,9 +334,7 @@ code {
   opacity: 0;
 }
 
-.link-card:hover {
-
-}
+.link-card:hover {}
 
 .link-card:hover {
   /* background: var(--background-section); */
@@ -354,7 +352,7 @@ form input,
 form select,
 form textarea,
 form button {
-	width: 100%;
+  width: 100%;
   border-radius: var(--radius-0);
   background-color: var(--background);
   border: 1px solid var(--color-transparent-2);
