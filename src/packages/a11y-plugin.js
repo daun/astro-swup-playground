@@ -1,40 +1,39 @@
-import { Location as e, nextTick as t } from "swup";
+import { Location as t, nextTick as e } from "swup";
 import n from "@swup/plugin";
 import "focus-options-polyfill";
-class i {
+class o {
   constructor() {
-    (this.liveRegion = void 0),
-      (this.liveRegionId = "swup-announcer"),
-      (this.liveRegionStyles =
+    (this.region = void 0),
+      (this.id = "swup-announcer"),
+      (this.style =
         "\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tclip: rect(0 0 0 0);\n\t\tclip-path: inset(50%);\n\t\toverflow: hidden;\n\t\twhite-space: nowrap;\n\t\tword-wrap: normal;\n\t\twidth: 1px;\n\t\theight: 1px;\n\t"),
-      (this.liveRegion = this.getLiveRegion() ?? this.createLiveRegion());
+      (this.region = this.getRegion() ?? this.createRegion());
   }
-  getLiveRegion() {
-    return document.getElementById(this.liveRegionId);
+  getRegion() {
+    return document.getElementById(this.id);
   }
-  createLiveRegion() {
-    const e = (function (e) {
-      const t = document.createElement("template");
-      return (t.innerHTML = e), t.content.children[0];
+  createRegion() {
+    const t = (function (t) {
+      const e = document.createElement("template");
+      return (e.innerHTML = t), e.content.children[0];
     })(
-      `<p aria-live="assertive" aria-atomic="true" id="${this.liveRegionId}" style="${this.liveRegionStyles}"></p>`
+      `<p aria-live="assertive" aria-atomic="true" id="${this.id}" style="${this.style}"></p>`
     );
-    return document.body.appendChild(e), e;
+    return document.body.appendChild(t), t;
   }
-  announce(e) {
+  announce(t, e = 0) {
     setTimeout(() => {
-      this.liveRegion.textContent = e;
-    });
+      this.region.textContent = t;
+    }, e);
   }
 }
-class o extends n {
-  constructor(e = {}) {
+class i extends n {
+  constructor(t = {}) {
     super(),
       (this.name = "SwupA11yPlugin"),
       (this.requires = { swup: ">=4" }),
       (this.defaults = {
-        contentSelector: "main",
-        headingSelector: "h1, h2, [role=heading]",
+        headingSelector: "h1",
         respectReducedMotion: !1,
         autofocus: !1,
         announcements: {
@@ -44,18 +43,12 @@ class o extends n {
       }),
       (this.options = void 0),
       (this.announcer = void 0),
-      (this.announce = (e) => {
-        this.announcer.announce(e);
+      (this.rootSelector = "body"),
+      (this.announce = (t) => {
+        this.announcer.announce(t);
       }),
-      (e.announcements = {
-        ...this.defaults.announcements,
-        visit:
-          e.announcementTemplate ?? String(this.defaults.announcements.visit),
-        url: e.urlTemplate ?? String(this.defaults.announcements.url),
-        ...e.announcements,
-      }),
-      (this.options = { ...this.defaults, ...e }),
-      (this.announcer = new i());
+      (this.options = { ...this.defaults, ...t }),
+      (this.announcer = new o());
   }
   mount() {
     this.swup.hooks.create("content:announce"),
@@ -81,104 +74,106 @@ class o extends n {
   unmarkAsBusy() {
     document.documentElement.removeAttribute("aria-busy");
   }
-  prepareVisit(e) {
-    e.a11y = { announce: void 0, focus: this.options.contentSelector };
+  prepareVisit(t) {
+    t.a11y = { announce: void 0, focus: this.rootSelector };
   }
-  prepareAnnouncement(t) {
-    if (void 0 !== t.a11y.announce) return;
-    const {
-        contentSelector: n,
-        headingSelector: i,
-        announcements: o,
-      } = this.options,
-      { href: s, url: a, pathname: r } = e.fromUrl(window.location.href),
-      u = o[document.documentElement.lang || "*"] || o;
-    if ("object" != typeof u) return;
-    const c = document.querySelector(`${n} ${i}`);
-    let l = c?.getAttribute("aria-label") || c?.textContent;
-    l =
-      l ||
+  prepareAnnouncement(e) {
+    if (void 0 !== e.a11y.announce) return;
+    const { headingSelector: n, announcements: o } = this.options,
+      { href: i, url: s, pathname: r } = t.fromUrl(window.location.href),
+      a = o[document.documentElement.lang || "*"] || o;
+    if ("object" != typeof a) return;
+    const u = document.querySelector(n);
+    u ||
+      console.warn(`SwupA11yPlugin: No main heading (${n}) found in document`);
+    let c = u?.getAttribute("aria-label") || u?.textContent;
+    c =
+      c ||
       document.title ||
-      this.parseTemplate(u.url, { href: s, url: a, path: r });
-    const h = this.parseTemplate(u.visit, {
-      title: l,
-      href: s,
-      url: a,
+      this.parseTemplate(a.url, { href: i, url: s, path: r });
+    const l = this.parseTemplate(a.visit, {
+      title: c,
+      href: i,
+      url: s,
       path: r,
     });
-    t.a11y.announce = h;
+    e.a11y.announce = l;
   }
-  parseTemplate(e, t) {
-    return Object.keys(t).reduce(
-      (e, n) => e.replace(`{${n}}`, t[n] || ""),
-      e || ""
+  parseTemplate(t, e) {
+    return Object.keys(e).reduce(
+      (t, n) => t.replace(`{${n}}`, e[n] || ""),
+      t || ""
     );
   }
   handleNewPageContent() {
-    const e = this;
-    t().then(function () {
+    const t = this;
+    e().then(function () {
       try {
         return (
-          e.swup.hooks.call("content:announce", void 0, void 0, (t) => {
-            e.announcePageName(t);
+          t.swup.hooks.call("content:announce", void 0, void 0, (e) => {
+            t.announcePageName(e);
           }),
-          e.swup.hooks.call("content:focus", void 0, void 0, (t) => {
-            e.focusPageContent(t);
+          t.swup.hooks.call("content:focus", void 0, void 0, (e) => {
+            t.focusPageContent(e);
           }),
           Promise.resolve()
         );
-      } catch (e) {
-        return Promise.reject(e);
+      } catch (t) {
+        return Promise.reject(t);
       }
     });
   }
-  announcePageName(e) {
-    e.a11y.announce && this.announcer.announce(e.a11y.announce);
+  announcePageName(t) {
+    t.a11y.announce && this.announcer.announce(t.a11y.announce, 100);
   }
-  focusPageContent(e) {
+  focusPageContent(t) {
     try {
-      const t = this;
-      if (!e.a11y.focus) return Promise.resolve();
-      if (t.options.autofocus) {
-        const n = t.getAutofocusElement();
+      const e = this;
+      if (!t.a11y.focus) return Promise.resolve();
+      if (e.options.autofocus) {
+        const n = e.getAutofocusElement();
         if (n && n !== document.activeElement)
           return (
-            t.swup.hooks.once("visit:end", (t) => {
-              t.id === e.id && n.focus();
+            e.swup.hooks.once("visit:end", (e) => {
+              e.id === t.id && n.focus();
             }),
             Promise.resolve()
           );
       }
-      const n = document.querySelector(e.a11y.focus);
+      const n = document.querySelector(t.a11y.focus);
+      if (!(n instanceof HTMLElement)) return Promise.resolve();
+      const o = n.getAttribute("tabindex");
       return (
-        n instanceof HTMLElement &&
-          (t.needsTabindex(n) && n.setAttribute("tabindex", "-1"),
-          n.focus({ preventScroll: !0 })),
+        n.setAttribute("tabindex", "-1"),
+        n.focus({ preventScroll: !0 }),
+        null !== o
+          ? n.setAttribute("tabindex", o)
+          : n.removeAttribute("tabindex"),
         Promise.resolve()
       );
-    } catch (e) {
-      return Promise.reject(e);
+    } catch (t) {
+      return Promise.reject(t);
     }
   }
   getAutofocusElement() {
-    const e = document.querySelector("body [autofocus]");
-    if (e && !e.closest('inert, [aria-disabled], [aria-hidden="true"]'))
-      return e;
+    const t = document.querySelector("body [autofocus]");
+    if (t && !t.closest('inert, [aria-disabled], [aria-hidden="true"]'))
+      return t;
   }
-  disableTransitionAnimations(e) {
-    e.animation.animate = e.animation.animate && this.shouldAnimate();
+  disableTransitionAnimations(t) {
+    t.animation.animate = t.animation.animate && this.shouldAnimate();
   }
-  disableScrollAnimations(e) {
-    e.scroll.animate = e.scroll.animate && this.shouldAnimate();
+  disableScrollAnimations(t) {
+    t.scroll.animate = t.scroll.animate && this.shouldAnimate();
   }
   shouldAnimate() {
     return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
-  needsTabindex(e) {
-    return !e.matches(
+  needsTabindex(t) {
+    return !t.matches(
       "a, button, input, textarea, select, details, [tabindex]"
     );
   }
 }
-export { o as default };
+export { i as default };
 //# sourceMappingURL=index.module.js.map
