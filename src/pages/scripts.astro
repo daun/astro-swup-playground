@@ -8,20 +8,27 @@ import Layout from '../layouts/Layout.astro';
 		<p class="section">
 			Expecting two checkmarks in the box below.
 		</p>
-		<p class="section" id="test"></p>
+		<div class="card-stack">
+			<div class="card">
+				Hoisted script tag: <span id="script-hoisted-check">🚫</span>
+			</div>
+			<div class="card">
+				Inline script tag: <span id="script-inline-check">🚫</span>
+			</div>
+		</div>
 	</article>
 
 	<script>
 		console.log('Script: hoisted');
-		const container = document.querySelector('#test')
-		container.innerHTML += '✓ script ';
+		const container = document.querySelector('#script-hoisted-check')
+		container.innerHTML = '✅';
 	</script>
 
 	<script is:inline>
 		{
 			console.log('Script: inline');
-			const container = document.querySelector('#test')
-			container.innerHTML += '✓ inline ';
+			const container = document.querySelector('#script-inline-check')
+			container.innerHTML = '✅';
 		}
 	</script>
 

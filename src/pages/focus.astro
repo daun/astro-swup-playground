@@ -1,18 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
 ---
 
 <Layout title="Focus" classes="focus">
 	<article>
 		<h1>Focus</h1>
+
 		<p class="section">
-			Check how swup focuses containers and autofocus elements.
+			Check how swup moves focus and handles autofocus elements.
 		</p>
-		<div class="section">
-			<form>
-				<input type="text" name="search" placeholder="Autofocused input" autofocus>
-			</form>
+
+		<h2>Autofocus</h2>
+
+		<div class="card-grid">
+			<div class="card">
+				This input should receive focus after reload and navigation.
+				<form class="form">
+					<input type="text" name="search" placeholder="Autofocused input" autofocus>
+				</form>
+			</div>
 		</div>
+
+		<h2>Anchor links</h2>
+
+		<ul role="list" class="card-grid">
+			<Card href="#heading" title="Heading" body="Scroll to heading anchor. Should move focus start point without focussing." />
+			<Card href="#anchor" title="Anchor" body="Scroll to link anchor. Should focus the link directly." />
+		</ul>
+
+		<p class="section">
+			Ut wisi enim ad minim veniam, quis <a href="/">nostrud exerci tation</a> ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+			Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+		</p>
+
+		<h3 id="heading">Heading</h3>
+
+		<p class="section">
+			After clicking the heading anchor above, the heading should not be focussed, however pressing tab should focus <a href="/">this link</a> after the heading.<br><br>
+			Lorem ipsum dolor sit amet, <a href="/">consetetur sadipscing elitr</a>, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+			Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+			Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+		</p>
+
+		<h3><a href="/" id="anchor">Anchor</a></h3>
+
+		<p class="section">
+			After clicking the anchor link above, the link in the heading should be focussed directly.
+		</p>
 	</article>
 
 </Layout>

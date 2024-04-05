@@ -18,9 +18,9 @@ const { href, title, body = '', history = '' } = Astro.props;
 		</slot>
 		<span aria-hidden="true">&rarr;</span>
 	</header>
-	<p>
-		{body}
-	</p>
+	<slot>
+		<p>{body}</p>
+	</slot>
 	<div class="cover-link">
 		<slot name="cover">
 			<a href={href} data-swup-history={history} aria-hidden="true" tabindex="-1">{title}</a>

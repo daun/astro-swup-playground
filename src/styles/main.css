@@ -33,7 +33,7 @@
   --color: rgb(0, 0, 0);
   --color-dimmed: rgb(150, 150, 150);
   --background: rgb(255, 255, 255);
-  --backgroun-section: rgb(240, 240, 240);
+  --background-section: rgb(240, 240, 240);
   --color-transparent-0: rgba(0, 0, 0, 0.07);
   --color-transparent-1: rgba(0, 0, 0, 0.1);
   --color-transparent-2: rgba(0, 0, 0, 0.2);
@@ -75,7 +75,7 @@ body {
   justify-items: center;
   align-content: start;
   grid-template-areas: "header"
-                       "main"
+                       "content"
                        "footer";
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
@@ -85,6 +85,7 @@ body {
 }
 
 .layout__header {
+  grid-area: header;
   position: sticky;
   top: 0;
   display: flex;
@@ -94,9 +95,14 @@ body {
   padding-left: var(--gap);
   padding-right: var(--gap);
   background: var(--background);
+  color: var(--swup-blue);
   border-bottom: 1px solid var(--color-transparent-1);
   transition: opacity 300ms 400ms;
   z-index: 4;
+}
+
+.layout > * {
+  min-width: 0;
 }
 
 .header {
@@ -108,7 +114,20 @@ body {
   margin: 0 auto;
 }
 
+.header__nav {
+  display: flex;
+  gap: 1.5em;
+  font-weight: bold;
+}
+
+.header__nav a span {
+  display: inline-block;
+  transform: rotate(-45deg);
+  color: var(--color-transparent-2);
+}
+
 .layout__content {
+  grid-area: content;
   display: grid;
   justify-items: center;
   width: 100%;
@@ -126,6 +145,9 @@ body {
 }
 
 .layout__footer {
+  grid-area: footer;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   padding-left: var(--gap);
   padding-right: var(--gap);
@@ -134,30 +156,12 @@ body {
   border-top: 1px solid var(--color-transparent-1);
 }
 
-.layout > * {
-  min-width: 0;
-}
-
-.layout > header {
-  grid-area: header;
-}
-
-.layout > main {
-  grid-area: main;
-}
-
-.layout > footer {
-  grid-area: footer;
-  display: flex;
-  justify-content: space-between;
-}
-
-/* .layout > footer a {
+/* .layout__footer a {
   text-decoration: underline;
   text-underline-offset: 0.3em;
 } */
 
-.layout > footer div + div {
+.layout__footer div + div {
   opacity: 0.5;
   margin-left: auto;
 }
@@ -167,8 +171,9 @@ footer {
   padding: 1.5rem 0;
 }
 
-main:focus {
-  outline: none;
+nav a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .footer {
@@ -229,6 +234,12 @@ h1 {
 
 h2 {
   font-size: var(--font-size-fluid-1);
+  font-weight: bold;
+  /* margin: 0; */
+}
+
+h3 {
+  font-size: var(--font-size-fluid-0);
   font-weight: bold;
   /* margin: 0; */
 }
@@ -328,7 +339,7 @@ code {
 }
 
 .link-card:hover {
-  /* background: var(--backgroun-section); */
+  /* background: var(--background-section); */
   border-color: var(--swup-blue);
   --card-text-color: var(--swup-blue);
 }
