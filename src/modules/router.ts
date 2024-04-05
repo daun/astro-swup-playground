@@ -1,25 +1,24 @@
 import gsap from 'gsap';
 
 import Swup from 'swup';
-// import Swup from '../packages/swup';
 
-import SwupA11yPlugin from '../packages/a11y-plugin';
-import SwupBodyClassPlugin from '../packages/body-class-plugin';
-import SwupDebugPlugin from '../packages/debug-plugin';
-import SwupFormsPlugin from '../packages/forms-plugin';
-import SwupFragmentPlugin from '../packages/fragment-plugin';
-import SwupJSPlugin from '../packages/js-plugin';
-import SwupHeadPlugin from '../packages/head-plugin';
-import SwupParallelPlugin from '../packages/parallel-plugin';
-import SwupPreloadPlugin from '../packages/preload-plugin';
-import SwupProgressPlugin from '../packages/progress-plugin';
-import SwupRouteNamePlugin from '../packages/route-name-plugin';
-import SwupScriptsPlugin from '../packages/scripts-plugin';
-import SwupScrollPlugin from '../packages/scroll-plugin';
-import SwupMorphPlugin from '../packages/morph-plugin';
-import SwupFadeTheme from '../packages/fade-theme';
-import SwupSlideTheme from '../packages/slide-theme';
-import SwupOverlayTheme from '../packages/overlay-theme';
+import SwupA11yPlugin from '@swup/a11y-plugin';
+import SwupBodyClassPlugin from '@swup/body-class-plugin';
+import SwupDebugPlugin from '@swup/debug-plugin';
+import SwupFormsPlugin from '@swup/forms-plugin';
+import SwupFragmentPlugin from '@swup/fragment-plugin';
+import SwupJSPlugin from '@swup/js-plugin';
+import SwupHeadPlugin from '@swup/head-plugin';
+import SwupParallelPlugin from '@swup/parallel-plugin';
+import SwupPreloadPlugin from '@swup/preload-plugin';
+import SwupProgressPlugin from '@swup/progress-plugin';
+import SwupRouteNamePlugin from '@swup/route-name-plugin';
+import SwupScriptsPlugin from '@swup/scripts-plugin';
+import SwupScrollPlugin from '@swup/scroll-plugin';
+import SwupMorphPlugin from 'swup-morph-plugin';
+import SwupFadeTheme from '@swup/fade-theme';
+import SwupSlideTheme from '@swup/slide-theme';
+import SwupOverlayTheme from '@swup/overlay-theme';
 
 const swup = new Swup({
   // native: true,
