@@ -24,7 +24,6 @@ import SwupOverlayTheme from '@swup/overlay-theme';
 /* -------------------------------------------------------------------------- */
 
 const A11yPlugin = new SwupA11yPlugin({
-	contentSelector: 'body',
 	respectReducedMotion: true,
 	autofocus: true,
 	announcements: {

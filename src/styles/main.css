@@ -70,6 +70,23 @@ body {
   border-width: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: calc(var(--header-height) / 2);
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: var(--swup-blue);
+  color: white;
+  padding: .5em .75em;
+  border-radius: var(--radius-1);
+  z-index: 1000;
+  opacity: 0;
+}
+
+.skip-link:focus {
+  opacity: 1;
+}
+
 .layout {
   display: grid;
   justify-items: center;

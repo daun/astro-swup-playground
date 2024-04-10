@@ -34,6 +34,7 @@ const fullTitle = [title, 'swup playground'].filter(Boolean).join(' — ');
 	</head>
 	<body class={classes}>
 		<slot name="body"/>
+		<a href="#content" class="skip-link">Skip to content</a>
 		<div class="layout">
 			<header class="layout__header">
 				<div class="header">
@@ -52,7 +53,7 @@ const fullTitle = [title, 'swup playground'].filter(Boolean).join(' — ');
 					</nav>
 				</div>
 			</header>
-			<div class="layout__content">
+			<div class="layout__content" id="content">
 				<!--
 					Animation classes:
 						page-transition-fade
