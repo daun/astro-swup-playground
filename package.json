@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/svelte": "^4.0.4",
     "@astrojs/tailwind": "^5.0.2",
-    "@swup/a11y-plugin": "^4.5.1",
+    "@swup/a11y-plugin": "^5.0.0",
     "@swup/body-class-plugin": "^3.2.0",
     "@swup/debug-plugin": "^4.0.4",
     "@swup/fade-theme": "^2.0.0",
@@ -22,7 +22,7 @@
     "@swup/js-plugin": "^3.1.1",
     "@swup/overlay-theme": "^2.0.0",
     "@swup/parallel-plugin": "^0.4.0",
-    "@swup/plugin": "^3.0.0",
+    "@swup/plugin": "^4.0.0",
     "@swup/preload-plugin": "^3.2.10",
     "@swup/progress-plugin": "^3.2.0",
     "@swup/route-name-plugin": "^4.1.0",
