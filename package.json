@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/svelte": "^4.0.4",
+    "@astrojs/svelte": "^5.7.0",
     "@astrojs/tailwind": "^5.0.2",
     "@swup/a11y-plugin": "^5.0.0",
     "@swup/body-class-plugin": "^3.2.0",
@@ -29,7 +29,7 @@
     "@swup/scripts-plugin": "^2.1.0",
     "@swup/scroll-plugin": "^3.3.2",
     "@swup/slide-theme": "^2.0.0",
-    "astro": "^3.6.4",
+    "astro": "^4.12.1",
     "focus-options-polyfill": "^1.6.0",
     "gsap": "^3.12.2",
     "morphdom": "^2.7.0",
