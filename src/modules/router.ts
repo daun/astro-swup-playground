@@ -54,7 +54,7 @@ const A11yPlugin = new SwupA11yPlugin({
 /* Plugins: Body Class                                                        */
 /* -------------------------------------------------------------------------- */
 
-const BodyClassPlugin = new SwupBodyClassPlugin();
+const BodyClassPlugin = new SwupBodyClassPlugin({ attributes: ['lang', 'data-title'] });
 
 /* -------------------------------------------------------------------------- */
 /* Plugins: Debug                                                             */
@@ -88,7 +88,8 @@ const FragmentPlugin = new SwupFragmentPlugin({
 
 const HeadPlugin = new SwupHeadPlugin({
 	persistAssets: true,
-	awaitAssets: true
+	awaitAssets: true,
+	attributes: ['data-title', 'lang']
 });
 
 /* -------------------------------------------------------------------------- */

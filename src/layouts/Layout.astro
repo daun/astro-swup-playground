@@ -18,10 +18,12 @@ import logo from '../assets/swup-logo-icon.svg';
 
 const fullTitle = [title, 'swup playground'].filter(Boolean).join(' — ');
 
+const dir = lang === 'fr' ? 'rtl' : 'ltr';
+
 ---
 
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang={lang} dir={dir} data-title={title}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -32,7 +34,7 @@ const fullTitle = [title, 'swup playground'].filter(Boolean).join(' — ');
 		<script src="/src/modules/router"></script>
 		<slot name="head"/>
 	</head>
-	<body class={classes}>
+	<body class={classes} data-title={title} lang={lang}>
 		<slot name="body"/>
 		<a href="#content" class="skip-link">Skip to content</a>
 		<div class="layout">
