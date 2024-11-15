@@ -99,21 +99,21 @@ const HeadPlugin = new SwupHeadPlugin({
 const JSPlugin = new SwupJSPlugin({
 	animations: [
 		// Web animations API: parallel
-		{
-			from: '(.*)',
-			to: '(.*)',
-			out: (done) => done(),
-			in: async () => {
-				const next = document.querySelector('main');
-				const prev = document.querySelector('main + main');
-				await Promise.all([
-					next!.animate([{ opacity: 0, transform: 'translateX(100%)' }, {}], 500)
-						.finished,
-					prev!.animate([{}, { opacity: 0, transform: 'translateX(-100%)' }], 500)
-						.finished
-				]);
-			}
-		},
+		// {
+		// 	from: '(.*)',
+		// 	to: '(.*)',
+		// 	out: (done) => done(),
+		// 	in: async () => {
+		// 		const next = document.querySelector('main');
+		// 		const prev = document.querySelector('main + main');
+		// 		await Promise.all([
+		// 			next!.animate([{ opacity: 0, transform: 'translateX(100%)' }, {}], 500)
+		// 				.finished,
+		// 			prev!.animate([{}, { opacity: 0, transform: 'translateX(-100%)' }], 500)
+		// 				.finished
+		// 		]);
+		// 	}
+		// },
 
 		// Web animations API: sequential
 		{
