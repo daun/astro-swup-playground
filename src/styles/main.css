@@ -272,10 +272,38 @@ code {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
+[id] {
+  scroll-margin: calc(var(--header-height) + 1rem) 1em 1em;
+}
+
 .section {
   margin: 1rem 0;
   padding: 1rem 0;
   line-height: 1.6;
+}
+
+.section--scrollable {
+  max-height: 6.5lh;
+  overflow-y: auto;
+  background-color: var(--color-transparent-1);
+  padding: 1.5em;
+  border-radius: var(--radius-1);
+  [id] {
+    /* scroll-margin: 1em; */
+  }
+}
+
+.section--scrollable-x {
+  /* max-height: none; */
+  overflow-x: auto;
+  overflow-y: initial;
+  p {
+    width: 200%;
+  }
+}
+
+.section--scrollable .section--scrollable {
+  max-height: 5lh;
 }
 
 .section a {
@@ -380,4 +408,14 @@ form button {
 form button {
   background-color: var(--color-transparent-1);
   border: none;
+}
+
+body:not(:has([data-swup-scroll-target])) :target {
+  outline: 2px solid blue;
+  outline-offset: .5rem;
+}
+
+[data-swup-scroll-target] {
+  outline: 2px solid var(--swup-blue);
+  outline-offset: .5rem;
 }

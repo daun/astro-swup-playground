@@ -128,11 +128,3 @@ html.is-changing .page-transition-native {
 .swup-not-native .fragment-transition-filter.is-previous-container {
   opacity: 0;
 }
-
-[data-swup-scroll-target] {
-  background: red;
-}
-
-/* :target {
-  background: blue;
-} */
