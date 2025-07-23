@@ -11,7 +11,12 @@ export default defineConfig({
     // swup({
     //   theme: 'fade',
     //   debug: true,
-    //   containers: ['main', 'header'],
+    //   globalInstance: true,
+    //   containers: ['header', 'main'],
+    //   // ignore: [/-/],
+    //   ignore: (url, { el, event }) => {
+    //     console.log('ignore', url, el, event)
+    //   },
     //   smoothScrolling: true,
     //   reloadScripts: true,
     //   loadOnIdle: true,
